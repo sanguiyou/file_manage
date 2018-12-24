@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../images/favicon.ico" type="image/ico"/>
+    <!-- Bootstrap -->
+    <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="../../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="../../vendors/timeline/jquery.eeyellow.Timeline.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../../build/css/custom.min.css" rel="stylesheet">
+    <link href="../../build/css/reportManager_projectDetail.css" rel="stylesheet">
+    <title>项目详情</title>
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="index.html" class="site_title">
+                        <span>TysenKLD</span></a>
+                </div>
+                <div class="clearfix"></div>
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="../images/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span>Welcome,</span>
+                        <h2>&nbsp;</h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+                <br/>
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                </div>
+                <!-- /sidebar menu -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <!--<img src="images/img.jpg" alt="">John Doe-->
+                                <span class="fa fa-power-off"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="javascript:;"> Profile</a></li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="badge bg-red pull-right">50%</span>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                                <li><a href="javascript:;">Help</a></li>
+                                <li><a href="bk/login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" title="消息" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <i class="fa fa-info-circle"></i>
+                                <!--<span class="badge bg-green">6</span>-->
+                            </a>
+                        </li>
+                        <li role="presentation" title="查找" class="dropdown">
+                            <a href="javascript:;"
+                               aria-expanded="false">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main" id="app">
+            <ul class="nav navbar-nav navbar-left page_title">
+                <li class="page_name">
+                    项目管理
+                </li>
+                <li >
+                    <ul class="breadcrumb border">
+                        <li><a href="./../index.html">首页</a></li>
+                        <li><a href="#">报备管理</a></li>
+                        <li class="active"><a href="./project.html" >项目管理</a></li>
+                        <li class="active">项目详情</li>
+                    </ul>
+                </li>
+                <div class="clearfix"></div>
+            </ul>
+            <ul class="nav navbar-nav pull-right btn_group">
+                <li ><span id="backBtn" >返回</span></li>
+                <li ><span href="" >修改</span></li>
+                <li ><span href="" class="color3">成交申报</span></li>                
+                <li ><span href="" class="color3">成交设置</span></li>
+                <li ><span href="" class="color4">项目移交</span></li>
+                <li ><span href="" class="color4">项目协调</span></li>
+                <li ><a :href="'/production/contractPerformance/contract_add.html?project_id='+project_detail.id"><span class="color3">创建合同</span></a></li>
+            </ul>
+            <div class="clearfix"></div>
+            <br/>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel tile filter_form">
+                        <div class="x_title">
+                            <h2 v-html="project_detail.name"><span class="state" v-html="project_detail.status"></span></h2>
+                        </div>
+                        <div class="x_content fixed_height_410">
+                            <div id="base_info">
+                                <ul >
+                                    <li class="info_row">
+                                        <div class="row_label">地区:</div>
+                                        <div class="row_content" v-html="project_detail.provinceName+'-'+project_detail.cityName+'-'+project_detail.areaName">you</div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">甲方:</div>
+                                        <div class="row_content" v-html="project_detail.partyAName">you</div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">行业分类:</div>
+                                        <div class="row_content" v-html="project_detail.industryParentName+'-'+project_detail.industryName+'-'+project_detail.industrySubName">民营-工业-电力电子/半导体</div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">代理商:</div>
+                                        <div class="row_content" v-html="project_detail.shadowUsers"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">设计院:</div>
+                                        <div class="row_content" v-html="project_detail.designInstituteName"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">备注:</div>
+                                        <div class="row_content" v-html="project_detail.description"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">产品:</div>
+                                        <div class="row_content" v-html="project_detail.productCategorys"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">审批时间:</div>
+                                        <div class="row_content" v-html="project_detail.approveAt"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">创建时间:</div>
+                                        <div class="row_content" v-html="project_detail.createAt"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">成交概率:</div>
+                                        <div class="row_content" v-html="project_detail.status"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">预计招标时间:</div>
+                                        <div class="row_content" v-html="project_detail.status"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="product_info">
+                                <div class="table_content">
+                                    <table class="table  table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>产品名称</th>
+                                            <th>数量</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>                                        
+                                        <tr v-for="project_product_obj in project_product_list">
+                                            <td v-html="project_product_obj.productId"></td>
+                                            <td v-html="project_product_obj.amount">Otto</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="analyse_content">
+                                    <ul class="nav navbar-nav">
+                                        <li class="">
+                                            <img src="../images/project_money.png" />
+                                            <p class="project_money">￥ 2323232323</p>
+                                            <p >成交金额</p>
+                                        </li>
+                                        <li class="">
+                                            <img src="../images/project_count.png" />
+                                            <p class="project_count">50000Kvar</p>
+                                            <p >总数量</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel tile">
+                        <div >
+                            <ul id="myTab" class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#waitApproval" data-type="1" data-toggle="tab">操作记录</a>
+                                </li>
+                                <li><a href="#approvaling" data-type="2" data-toggle="tab">拜访</a></li>
+                                <li class="dropdown">
+                                    <a href="#approvalsuccess" data-type="3" data-toggle="tab">报价(5)</a>
+                                </li>
+                            </ul>
+                            <a :href="'./addQuotn.html?project_id='+project_detail.id+'&project_name='+project_detail.name" id="addReportPriceBtn">+新增报价</a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade in active" id="waitApproval">
+                                <div class="col-md-5 col-sm-5 col-xs-5">
+                                    <div class="VivaTimeline" style="margin-left:-50%;">
+                                        <dl>
+                                            <dd class="pos-right clearfix" v-for="project_detail_obj in project_detail_list">
+                                                <div class="circ"></div>
+                                                <div class="time"><strong v-html="project_detail_obj.createAt">20:15:03</strong><br/>2018-12-11</div>
+                                                <div class="events">
+                                                    <div class="events-body">
+                                                        <div class="events-desc">
+                                                            <h2 v-html="project_detail_obj.startStatus+'&nbsp;>>&nbsp;'+project_detail_obj.endStatus"></h2>
+                                                            <p v-html="project_detail_obj.content"></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </dd>                                            
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="approvaling">
+                                <table class="table  table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>拜访时间</th>
+                                        <th>联系人</th>
+                                        <th>活动类型</th>
+                                        <th>活动金额(有发票)</th>
+                                        <th>现金金额(无发票)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="project_visit_obj in project_visit_list">
+                                        <td v-html="project_visit_obj.visitAt"></td>
+                                        <td v-html="project_visit_obj.contacts.join(',')"></td>
+                                        <td v-html="project_visit_obj.activityTypes.join(',')"></td>
+                                        <td v-html="project_visit_obj.amount1"></td>
+                                        <td v-html="project_visit_obj.amount2"></td>
+                                    </tr>
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="approvalsuccess">
+                                <table class="table  table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>时间</th>
+                                        <th>报价名称</th>
+                                        <th>TO</th>
+                                        <th>FROM</th>
+                                        <th>总金额</th>
+                                        <th>报价详情</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="project_quotation_obj in project_quotation_list">
+                                        <td v-html="project_quotation_obj.createAt"></td>
+                                        <td v-html="project_quotation_obj.title"></td>
+                                        <td v-html="project_quotation_obj.partyAName"></td>
+                                        <td v-html="project_quotation_obj.companyName"></td>
+                                        <td v-html="project_quotation_obj.amount"></td>
+                                        <td><a :href="'/production/reportManager/quotnDetail.html?quotation_id='+project_quotation_obj.id" >详情</a>&nbsp;&nbsp;
+                                            <a :href="project_quotation_obj.quotationUrl">下载</a>
+                                        </td>
+                                    </tr>                                    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            Copyright © 2019 TysenKLD. All rights reserved.
+        </footer>
+    </div>
+</div>
+<!-- jQuery -->
+<script src="../../vendors/jquery/dist/jquery.min.js"></script>
+<!--sidemenu-->
+<script src="../../vendors/vue/vue.js"></script>
+<script src="./../js/sidemenu/index.js"></script>
+<!-- Bootstrap -->
+<script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../../vendors/nprogress/nprogress.js"></script>
+<!-- gauge.js -->
+<script src="../../vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="../../vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script src="../../vendors/skycons/skycons.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="../../build/js/custom.min.js"></script>
+<script src="../../build/js/reportManager_projectDetail.min.js"></script>
+</body>
+</html>

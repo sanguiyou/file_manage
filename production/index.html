@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/ico"/>
+    <title>帝森后台管理系统</title>
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="../build/css/index.css" rel="stylesheet">
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="#" class="site_title">
+                        <span>TysenKLD</span><button style="color:red" id="login"> 登录</button>  </a>
+                        
+                </div>
+                <div class="clearfix"></div>
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span>Welcome,</span>
+                        <h2>&nbsp;</h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+                <br/>
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                </div>
+                <!-- /sidebar menu -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <!--<img src="images/img.jpg" alt="">John Doe-->
+                                <span class="fa fa-power-off"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="javascript:;"> Profile</a></li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="badge bg-red pull-right">50%</span>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                                <li><a href="javascript:;">Help</a></li>
+                                <li><a href="bk/login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" title="消息" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <i class="fa fa-info-circle"></i>
+                                <!--<span class="badge bg-green">6</span>-->
+                            </a>
+                        </li>
+                        <li role="presentation" title="查找" class="dropdown">
+                            <a href="javascript:;"
+                               aria-expanded="false">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="row">
+                <div class="col-md-7 col-sm-7 col-xs-12">
+                    <div class="x_panel tile fixed_height_470">
+                        <div class="x_title">
+                            <h2>项目总览</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a class="special_btn active" href="javascript:void(0)">周</a>
+                                </li>
+                                <li>
+                                    <a class="special_btn" href="javascript:void(0)">月</a>
+                                </li>
+                                <li>
+                                    <a class="special_btn" href="javascript:void(0)">年</a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content" style="height:400px;" id="chart_01">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-5 col-xs-12" id="total_count">
+                    <div class="x_panel tile fixed_height_470">
+                        <ul>
+                            <li class="project_count">
+                                <p class="name">项目总数</p>
+                                <p class="count">32233</p>
+                                <span class="btn_group">
+                                    <a class="active" href="javascript:void(0)">已通过</a>
+                                    <a href="javascript:void(0)">待审批</a>
+                                    <a href="javascript:void(0)">被驳回</a>
+                                </span>
+                            </li>
+                            <li class="money_count">
+                                <p class="name">金额总计</p>
+                                <p class="count">￥1212.12</p>
+                                <span class="btn_group">
+                                    <a class="active" href="javascript:void(0)">未付款</a>
+                                    <a href="javascript:void(0)">已开票</a>
+                                    <a href="javascript:void(0)">今日到期</a>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row" id="controy_data">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel tile fixed_height_680">
+                        <div class="x_title">
+                            <h2>全国各地数据汇总</h2>
+                        </div>
+                        <div class="x_content">
+                            <div id="chart_02">
+                            </div>
+                            <div id="table_content">
+                                <table class="table  table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>省/直辖市</th>
+                                        <th>项目数(个)</th>
+                                        <th>未付款(万元)</th>
+                                        <th>已付款(万元)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>山东省</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>江苏</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <td>北京市</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>山东省</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>江苏</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <td>北京市</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>山东省</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>江苏</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <td>北京市</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>山东省</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>江苏</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <td>北京市</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>山东省</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>江苏</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <td>北京市</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>山东省</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>江苏</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <td>北京市</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row" id="team_data">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel tile fixed_height_470">
+                        <div class="x_title">
+                            <h2>部门任务统计</h2>
+                            <span class="btn_group">
+                                <a href="javascript:void(0)" data-type="year">年度任务(kvar)</a>
+                                <a href="javascript:void(0)" data-type="done">已完成任务(kvar)</a>
+                                <a href="javascript:void(0)" data-type="backMoney">回款率</a>
+                            </span>
+                        </div>
+                        <div class="x_content">
+                            <div id="chart_03">
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            Copyright © 2019 TysenKLD. All rights reserved.
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="../vendors/jquery/dist/jquery.min.js"></script>
+<!--sidemenu-->
+<script src="./js/sidemenu/index.js"></script>
+<!-- Bootstrap -->
+<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../vendors/nprogress/nprogress.js"></script>
+<!-- gauge.js -->
+<script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="../vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script src="../vendors/skycons/skycons.js"></script>
+<!--echarts-->
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+<script type="text/javascript"
+        src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="../build/js/custom.min.js"></script>
+<script src="../build/js/index.min.js"></script>
+
+</body>
+</html>

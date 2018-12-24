@@ -1,0 +1,35 @@
+#addBtn {
+    cursor: pointer;
+}
+#searchBtn {
+    width: 100px;
+    margin-left: 20%;
+}
+.search_content {
+    background: #fff;
+    overflow: hidden;
+    padding: 20px;
+    margin-top: 15px;
+}
+#addressContent {
+    ul {
+        list-style: none;
+        padding: 0px;
+        overflow: hidden;
+    }
+    li {
+        float: left;
+        margin-top: 15px;
+        &.active {
+            a {
+                background: #FF6600;
+                color: #fff;
+            }
+        }
+        a {
+            display: block;
+            line-height: 35px;
+            padding: 0px 20px;
+        }
+    }
+}

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../images/favicon.ico" type="image/ico"/>
+    <!-- Bootstrap -->
+    <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="../../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="../../vendors/timeline/jquery.eeyellow.Timeline.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../../build/css/custom.min.css" rel="stylesheet">
+    <link href="../../build/css/contractPerformance_contractDetail.css" rel="stylesheet">
+    <title>合同详情</title>
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="index.html" class="site_title">
+                        <span>TysenKLD</span></a>
+                </div>
+                <div class="clearfix"></div>
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="../images/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span>Welcome,</span>
+                        <h2>&nbsp;</h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+                <br/>
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                </div>
+                <!-- /sidebar menu -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <!--<img src="images/img.jpg" alt="">John Doe-->
+                                <span class="fa fa-power-off"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="javascript:;"> Profile</a></li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="badge bg-red pull-right">50%</span>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                                <li><a href="javascript:;">Help</a></li>
+                                <li><a href="bk/login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" title="消息" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <i class="fa fa-info-circle"></i>
+                                <!--<span class="badge bg-green">6</span>-->
+                            </a>
+                        </li>
+                        <li role="presentation" title="查找" class="dropdown">
+                            <a href="javascript:;"
+                               aria-expanded="false">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main" id="app">
+            <ul class="nav navbar-nav navbar-left page_title">
+                <li class="page_name">
+                    合同详情
+                </li>
+                <li >
+                    <ul class="breadcrumb border">
+                        <li><a href="./../index.html">首页</a></li>
+                        <li><a href="#">合同绩效</a></li>
+                        <li class="active"><a href="./contract.html" >合同管理</a></li>
+                        <li class="active">合同详情</li>
+                    </ul>
+                </li>
+                <div class="clearfix"></div>
+            </ul>
+            <ul class="nav navbar-nav pull-right btn_group">
+                <li ><span class="color3">开票状态</span></li>
+                <li ><span class="color3">开票等级</span></li>
+                <li ><span class="color3">导出发票</span></li>
+                <li ><span class="color3">回款登记</span></li>
+                <li ><span class="color5">导出合同</span></li>
+                <li ><span class="color5">模板设置</span></li>
+                <li ><span class="color4">删除</span></li>
+                <li ><span class="color4">修改(通过前)</span></li>
+            </ul>
+            <div class="clearfix"></div>
+            <br/>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel tile filter_form">
+                        <div class="x_title">
+                            <h2>合同基本详情</h2>
+                        </div>
+                        <div class="x_content">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <ul >
+                                    <li class="info_row">
+                                        <div class="row_label">合同编号:</div>
+                                        <div class="row_content" v-html="contract_detail.no"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">合同金额:</div>
+                                        <div class="row_content" v-html="contract_detail.amount"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">合同实际金额:</div>
+                                        <div class="row_content" v-html="contract_detail.actualAmount"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">签订时间:</div>
+                                        <div class="row_content" v-html="contract_detail.signedAt"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">质保期(月):</div>
+                                        <div class="row_content" v-html="contract_detail.warrantyPeriod"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">特殊技术要求:</div>
+                                        <div class="row_content" v-html="contract_detail.hasSpecialRequirement == 0?'无':'有'"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">备注:</div>
+                                        <div class="row_content" v-html="contract_detail.note"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">已开票金额:</div>
+                                        <div class="row_content" v-html="contract_detail.receiptAmount"></div>
+                                    </li>                                                                        
+                                </ul>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <ul >
+                                    <li class="info_row">
+                                        <div class="row_label">项目名称:</div>
+                                        <div class="row_content" v-html="contract_detail.name"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">客户:</div>
+                                        <div class="row_content" v-html="contract_detail.businessEntityName"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">供应公司:</div>
+                                        <div class="row_content" v-html="contract_detail.companyName"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">报备人:</div>
+                                        <div class="row_content" v-html="contract_detail.ownerName"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">协助人:</div>
+                                        <div class="row_content" v-html="contract_detail.assistantName"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">代理商:</div>
+                                        <div class="row_content" v-html="contract_detail.shadowUsersName==''?'本人':contract_detail.shadowUsersName"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">品牌:</div>
+                                        <div class="row_content" v-html="contract_detail.brandName"></div>
+                                    </li>
+                                    <li class="info_row">
+                                        <div class="row_label">总绩效:</div>
+                                        <div class="row_content" v-html=""></div>
+                                    </li>  
+                                    <li class="info_row">
+                                        <div class="row_label">最低限制总价:</div>
+                                        <div class="row_content" v-html=""></div>
+                                    </li>   
+                                    <li class="info_row">
+                                        <div class="row_label">绩效起算时间:</div>
+                                        <div class="row_content" v-html="contract_detail.performanceAt"></div>
+                                    </li>    
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel tile">
+                        <div >
+                            <ul id="myTab" class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#zujianqingdan" data-type="zujianqingdan" data-toggle="tab">组件清单</a>
+                                </li>
+                                <li><a href="#component_sku_detail" data-type="component_sku_detail" data-toggle="tab">组件单品详单</a></li>
+                                <li >
+                                    <a href="#chanpinjixiao" data-type="3" data-toggle="tab">产品绩效</a>
+                                </li>
+                                <li >
+                                    <a href="#rongliangtongji" data-type="3" data-toggle="tab">容量统计</a>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav pull-right btn_group" style="margin-top:-40px;">
+                                <li ><span class="color3">重新录入</span></li>
+                                <li ><span class="color3">完成绩效计算</span></li>
+                                <li ><span class="color3">设为特批</span></li>
+                                <li ><span class="color4">清空产品/绩效</span></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade in active" id="zujianqingdan">
+                                <table class="table  table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>组件</th>
+                                        <th>单价</th>
+                                        <th>组件数量</th>                                        
+                                        <th>总容量(KVar)</th>
+                                        <th>总价</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="zujianqingdan_obj in zujianqingdan_list">
+                                        <td v-html="zujianqingdan_obj.id"></td>
+                                        <td v-html="zujianqingdan_obj.productComponentSkuId"></td>
+                                        <td v-html="zujianqingdan_obj.unitPrice"></td>
+                                        <td v-html="zujianqingdan_obj.count"></td>                                        
+                                        <td v-html="zujianqingdan_obj.capacity"></td>
+                                        <td v-html="zujianqingdan_obj.amount"></td>
+                                        <td v-html=""></td>
+                                    </tr>
+                                    </tbody>
+                                </table>                               
+                            </div>
+                            <div class="tab-pane fade in active" id="component_sku_detail">
+                                <table class="table  table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>名称</th>
+                                        <th>型号</th>
+                                        <th>单位</th>                                        
+                                        <th>容量</th>
+                                        <th>单价</th>
+                                        <th>数量</th>
+                                        <th>总价</th>
+                                        <th>备注</th>                                        
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                     <tr><td colspan="10">产品组件列表</td></tr>
+                                     <template v-for="component_sku_obj in component_sku_detail.componentSkuList"> 
+                                    <tr>
+                                        <td colspan="10" v-html="component_sku_obj.id+',数量：'+component_sku_obj.count"></td>
+                                        <table>                                                                                 
+                                            <tr v-for="sku_obj in component_sku_obj.skuList">
+                                                <td v-html="sku_obj.id"></td>
+                                                <td v-html="sku_obj.productSkuId"></td>
+                                                <td v-html="sku_obj.productSkuId"></td>
+                                                <td v-html="sku_obj.unitCapacity"></td>                                        
+                                                <td v-html="sku_obj.capacity"></td>
+                                                <td v-html="sku_obj.unitPrice"></td>
+                                                <td v-html="sku_obj.count"></td>
+                                                <td v-html="sku_obj.amount"></td>
+                                                <td v-html="sku_obj.note"></td>
+                                                <td v-html=""></td>
+                                            </tr>                                                                                        
+                                        </table>
+                                    </tr>
+                                    <tr><td colspan="10">产品单品列表</td></tr>
+                                    <tr v-for="sku_obj in component_sku_detail.singleSkuList">
+                                            <td v-html="sku_obj.id"></td>
+                                            <td v-html="sku_obj.productSkuId"></td>
+                                            <td v-html="sku_obj.productSkuId"></td>
+                                            <td v-html="sku_obj.unitCapacity"></td>                                        
+                                            <td v-html="sku_obj.capacity"></td>
+                                            <td v-html="sku_obj.unitPrice"></td>
+                                            <td v-html="sku_obj.count"></td>
+                                            <td v-html="sku_obj.amount"></td>
+                                            <td v-html="sku_obj.note"></td>
+                                            <td v-html=""></td>
+                                        </tr> 
+
+                                </template>
+                                    </tbody>
+                                </table>                               
+                            </div>
+                            <div class="tab-pane fade" id="rongliangtongji">
+                                <table class="table  table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>产品分类</th>
+                                        <th>容量</th>
+                                        <th>数量</th>
+                                        <th>产生绩效</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><a href="./contractDetail.html" >Otto</a></td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>Otto</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="page_content">
+                                    <ul id="pageLimit3" class="pageLimit"></ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="chanpinjixiao">
+                                <table class="table  table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>产品</th>
+                                        <th>主型号</th>
+                                        <th>单位绩效</th>
+                                        <th>数量</th>
+                                        <th>容量</th>
+                                        <th>绩效</th>
+                                        <th>计算规则</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><a href="./contractDetail.html" >Otto</a></td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="page_content">
+                                    <ul id="pageLimit2" class="pageLimit"></ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="zujiandanpinxiangdan"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel tile">
+                        <div >
+                            <ul id="myTab2" class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#shijianjilu" data-type="shijianjilu" data-toggle="tab">事件记录</a>
+                                </li>
+                                <li><a href="#huikuanjilu" data-type="huikuanjilu" data-toggle="tab">回款记录</a></li>
+                                <li >
+                                    <a href="#zhuanyijilu" data-type="zhuanyijilu" data-toggle="tab">转移记录</a>
+                                </li>
+                                <li >
+                                    <a href="#shenhedan" data-type="shenhedan" data-toggle="tab">审核单</a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div id="myTabContent2" class="tab-content">
+                            <div class="tab-pane fade in active" id="shijianjilu">
+                                    <div class="col-md-5 col-sm-5 col-xs-5">
+                                        <div class="VivaTimeline" style="margin-left:-50%;">
+                                            <dl>
+                                                <dd class="pos-right clearfix" v-for="project_detail_obj in agreement_details_list">
+                                                    <div class="circ"></div>
+                                                    <div class="time"><strong>{{project_detail_obj.createAt | format_date_d}}</strong><br/>{{project_detail_obj.createAt | format_date_y}}</div>
+                                                    <div class="events">
+                                                        <div class="events-body">
+                                                            <div class="events-desc">
+                                                                <h2 v-html="project_detail_obj.startStatus+'&nbsp;>>&nbsp;'+project_detail_obj.endStatus"></h2>
+                                                                <p v-html="project_detail_obj.content"></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </dd>                                            
+                                            </dl>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="tab-pane fade" id="huikuanjilu">
+                                <table class="table  table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>流水号</th>
+                                        <th>付款方式</th>
+                                        <th>金额</th>
+                                        <th>付款日期</th>
+                                        <th>开票状态</th>
+                                        <th>到款日期</th>
+                                        <th>预计到款日期</th>
+                                        <th>添加人</th>
+                                        <th>备注</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="agreement_payments_obj in agreement_payments_list">
+                                        <td v-html="agreement_payments_obj.id"></td>
+                                        <td v-html="agreement_payments_obj.serialNo"></td>
+                                        <td v-html="agreement_payments_obj.amount"></td>
+                                        <td >{{agreement_payments_obj.paidAt | format_date_y}}</td>
+                                        <td v-html="agreement_payments_obj.receiptStatus ==0?'不开票':'开票'"></td>
+                                        <td>{{agreement_payments_obj.receivedAt | format_date_y}}</td>
+                                        <td>{{agreement_payments_obj.dueDate | format_date_y}}</td>
+                                        <td v-html="agreement_payments_obj.operatorId"></td>
+                                        <td v-html="agreement_payments_obj.note"></td>
+                                        <td></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="page_content">
+                                    <ul id="pageLimit6" class="pageLimit"></ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="zhuanyijilu">
+                                <table class="table  table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>产品</th>
+                                        <th>主型号</th>
+                                        <th>单位绩效</th>
+                                        <th>数量</th>
+                                        <th>容量</th>
+                                        <th>绩效</th>
+                                        <th>计算规则</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><a href="./contractDetail.html" >Otto</a></td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="page_content">
+                                    <ul id="pageLimit7" class="pageLimit"></ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="shenhedan">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width:120px;">申请名称：</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td >申请状态：</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>申请人：</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>申请时间：</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>申请单号：</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            Copyright © 2019 TysenKLD. All rights reserved.
+        </footer>
+    </div>
+</div>
+<!-- jQuery -->
+<script src="../../vendors/jquery/dist/jquery.min.js"></script>
+<!--sidemenu-->
+<script src="./../js/sidemenu/index.js"></script>
+<script src="../../vendors/vue/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../../vendors/moment/min/moment.min.js"></script>
+<!-- FastClick -->
+<script src="../../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../../vendors/nprogress/nprogress.js"></script>
+<!-- gauge.js -->
+<script src="../../vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!--paginator-->
+<script src="../../vendors/bootstrap-paginator-master/build/bootstrap-paginator.min.js"></script>
+<!-- iCheck -->
+<script src="../../vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script src="../../vendors/skycons/skycons.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="../../build/js/custom.min.js"></script>
+<script src="../../build/js/contractPerformance_contractDetail.min.js"></script>
+</body>
+</html>

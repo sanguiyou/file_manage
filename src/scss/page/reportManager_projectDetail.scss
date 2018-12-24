@@ -1,0 +1,89 @@
+.x_title .state {
+    font-size: 12px;
+    width: 43px;
+    height: 19px;
+    line-height: 19px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #3298f5;
+    border-radius: 4px;
+    color: #3298f5;
+    margin-left: 15px;
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: -1px;
+}
+#base_info ul {
+    list-style: none;
+    padding: 0px;
+}
+#base_info, #product_info {
+    height: 100%;
+    float: left;
+}
+#base_info {
+    width: 60%;
+    border-right: 1px solid gray;
+}
+#product_info {
+    width: 40%;
+}
+#product_info .table_content {
+    height: 310px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+#base_info .info_row {
+    overflow: hidden;
+}
+#base_info .info_row .row_label {
+    width: 100px;
+    float: left;
+    color: #8f96a8;
+}
+#base_info .row_content {
+    color: #6a7183;
+}
+#base_info .info_row {
+    margin-bottom: 18px;
+}
+#product_info .analyse_content {
+    border-top: 1px solid #ddd;
+    padding-top: 33px;
+}
+.analyse_content img {
+    float: left;
+}
+.analyse_content p {
+    margin-left: 64px;
+    color: #4d5a72;
+    font-size: 12px;
+}
+.analyse_content .navbar-nav {
+    width: 100%;
+}
+.analyse_content .project_money {
+    color: #fc4442;
+    font-size: 18px;
+}
+.analyse_content li {
+    width: 50%;
+}
+.analyse_content li:first-child {
+    padding-left: 10px;
+}
+.analyse_content .project_count {
+    color: #0197d5;
+    font-size: 18px;
+}
+.table a {
+    color: #43B0EE;
+}
+#addReportPriceBtn {
+    position: absolute;
+    right: 20px;
+    color: #43B0EE;
+    top: 0px;
+    line-height: 60px;
+    display: none;
+}

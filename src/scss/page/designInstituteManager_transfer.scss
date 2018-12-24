@@ -1,0 +1,51 @@
+.row {
+    margin-top: 15px;
+    overflow: hidden;
+}
+.left_tree, .right_tree {
+    width: 46%;
+    height: 700px;
+    float: left;
+    padding: 0px;
+    background: #F5FBFF;
+}
+.center_btn_group {
+    width: 8%;
+    float: left;
+    height: 700px;
+    text-align: center;
+    background: url(../../../production/images/transfer_btn_bg.png) no-repeat center bottom;
+}
+.center_btn_group a {
+    width: 90%;
+    display: inline-block;
+    color: #fff;
+    text-align: center;
+    line-height: 80px;
+    border-radius: 50%;
+    margin-top: 40%;
+}
+.center_btn_group a img {
+    width: 100%;
+}
+.center_btn_group a.back {
+    width: 80%;
+}
+.tree {
+    width: 150px;
+    height: 100%;
+    border-right: 1px solid #ddd;
+    float: left;
+    overflow-x: auto;
+}
+.table_content {
+    float: left;
+    width: calc(100% - 150px);
+    height: 100%;
+    overflow-y: auto;
+}
+.ztree .button {
+    padding: 0px;
+    box-shadow: none;
+    border-radius: 0px;
+}

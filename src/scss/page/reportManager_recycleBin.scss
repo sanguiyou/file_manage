@@ -1,0 +1,24 @@
+#addProejctBtn {
+    cursor: pointer;
+}
+#searchBtn {
+    width: 100px;
+}
+.search_content {
+    background: #fff;
+    overflow: hidden;
+    padding: 20px;
+    margin-top: 15px;
+}
+.checked, .rejected {
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+.checked {
+    background: #1BB394;
+}
+.rejected {
+    background: #ED5969;
+}

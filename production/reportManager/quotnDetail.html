@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../images/favicon.ico" type="image/ico"/>
+    <!-- Bootstrap -->
+    <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="../../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="../../vendors/timeline/jquery.eeyellow.Timeline.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../../build/css/custom.min.css" rel="stylesheet">
+    <link href="../../build/css/reportManager_quotnDetail.css" rel="stylesheet">
+    <title>报价详情</title>
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="index.html" class="site_title">
+                        <span>TysenKLD</span></a>
+                </div>
+                <div class="clearfix"></div>
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="../images/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span>Welcome,</span>
+                        <h2>&nbsp;</h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+                <br/>
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                </div>
+                <!-- /sidebar menu -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <!--<img src="images/img.jpg" alt="">John Doe-->
+                                <span class="fa fa-power-off"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="javascript:;"> Profile</a></li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="badge bg-red pull-right">50%</span>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                                <li><a href="javascript:;">Help</a></li>
+                                <li><a href="bk/login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" title="消息" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <i class="fa fa-info-circle"></i>
+                                <!--<span class="badge bg-green">6</span>-->
+                            </a>
+                        </li>
+                        <li role="presentation" title="查找" class="dropdown">
+                            <a href="javascript:;"
+                               aria-expanded="false">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main" id="app">
+            <ul class="nav navbar-nav navbar-left page_title">
+                <li class="page_name">
+                    项目管理
+                </li>
+                <li >
+                    <ul class="breadcrumb border">
+                        <li><a href="./../index.html">首页</a></li>
+                        <li><a href="#">报备管理</a></li>
+                        <li><a href="./project.html" >项目管理</a></li>
+                        <li class="active">报价详情</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+            <div style="background:#fff;padding:20px;padding-top:5px;margin-top:15px;" id="baseInfo">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <h2 class="text-center" v-html="quotation_detail.title"></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <p class="left-content">To</p>
+                        <div class="text_content" v-html="quotation_detail.partyAName"></div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 ">
+                        <p class="left-content">From</p>
+                        <div class="text_content" v-html="quotation_detail.companyName"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <p class="left-content">客户联系人</p>
+                        <div class="text_content" v-html="quotation_detail.contact"></div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 ">
+                        <p class="left-content">公司联系人</p>
+                        <div class="text_content" v-html="quotation_detail.ownerName"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <p class="left-content">客户电话</p>
+                        <div class="text_content" v-html="quotation_detail.phone"></div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 ">
+                        <p class="left-content">公司电话</p>
+                        <div class="text_content" v-html="quotation_detail.salerTel"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <p class="left-content">客户传真</p>
+                        <div class="text_content" v-html="quotation_detail.customerFax"></div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 ">
+                        <p class="left-content">公司传真</p>
+                        <div class="text_content" v-html="quotation_detail.companyFax"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <p>简单说明</p>
+                        <div class="text_content" style="padding-left: 80px;line-height:30px;" v-html="quotation_detail.note">                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix" ></div>
+            <br/>
+            <div style="background:#fff;padding:20px;padding-top:5px;margin-top:15px;">
+                <div class="product_list">
+                    <p class="product_title">产品列表</p>
+                    <ul id="productListUL">
+                        <li v-for="item_obj in quotation_detail.items">
+                            <div class="row">
+                                <div class="col-md-1 col-sm-1 col-xs-1" style="width:50px;">
+                                    <div class="product_num text_content"><span class="num" v-html="item_obj.id"></span></div>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <p>型号</p>
+                                    <div class="text_content" v-html="item_obj.skuName"></div>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <p>单位</p>
+                                    <div class="text_content" v-html="item_obj.unitCapacity"></div>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <p>单价(元)</p>
+                                    <div class="text_content" v-html="'￥'+item_obj.unitPrice"></div>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <p>数量</p>
+                                    <div class="text_content" v-html="item_obj.count"></div>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <p>合计金额(元)</p>
+                                    <div class="text_content" v-html="'￥'+item_obj.amount"></div>
+                                </div>
+                            </div>
+                            <div class="row" >
+                                <div class="col-md-1 col-sm-1 col-xs-1" style="width:50px;">
+                                </div>
+                                <div class="col-md-11 col-sm-11 col-xs-11" v-if="item_obj.quotationType == 1">
+                                    <p>描述/配置/路数</p>     
+                                    <div class="text_content" v-html="item_obj.note"></div>                               
+                                </div>
+                                <div class="col-md-11 col-sm-11 col-xs-11" v-if="item_obj.quotationType == 2">
+                                    <p>型号&nbsp;&nbsp;<span v-html="item_obj.materialModel"></span></p>
+                                    <div class="text_content" v-html="item_obj.note"></div>                                   
+                                </div>                                
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="bottom_tip">
+                            <a :href="quotation_detail.quotationUrl"><button type="button" class="btn btn-primary btn-lg" style="margin-right:50px;">下载</button></a>s
+                        <span class="total-price" style="float:right;">总价: ￥232323</span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            Copyright © 2019 TysenKLD. All rights reserved.
+        </footer>
+    </div>
+</div>
+<!-- jQuery -->
+<script src="../../vendors/jquery/dist/jquery.min.js"></script>
+<!--sidemenu-->
+<script src="./../js/sidemenu/index.js"></script>
+<!-- Bootstrap -->
+<script src="../../vendors/vue/vue.js"></script>
+<script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../../vendors/nprogress/nprogress.js"></script>
+<!-- gauge.js -->
+<script src="../../vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="../../vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script src="../../vendors/skycons/skycons.js"></script>
+<script src="../../vendors/ckeditor/ckeditor.js"></script>
+<script src="../../vendors/art-template-master/lib/template-web.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="../../build/js/custom.min.js"></script>
+<script src="../../build/js/reportManager_quotnDetail.min.js"></script>
+</body>
+</html>

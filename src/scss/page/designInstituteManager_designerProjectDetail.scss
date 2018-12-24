@@ -1,0 +1,33 @@
+.row p {
+    margin-bottom: 0px;
+    margin-top: 15px;
+    line-height: 25px;
+}
+.text_content {
+    color: #000;
+    line-height: 25px;
+    font-size: 16px;
+}
+.product_list .product_title {
+    font-size: 20px;
+    line-height: 40px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    color: #000;
+    border-bottom: 1px solid #ddd;
+}
+.product_list ul {
+    list-style: none;
+    padding: 0;
+}
+.product_list li {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+.total-price {
+    font-size: 30px;
+    color: #000;
+}
+.bottom_tip {
+    margin-top: 25px;
+}

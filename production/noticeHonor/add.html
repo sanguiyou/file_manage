@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../images/favicon.ico" type="image/ico"/>
+    <!-- Bootstrap -->
+    <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="../../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="../../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="../../vendors/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../../build/css/custom.min.css" rel="stylesheet">
+    <link href="../../build/css/department_clerkAdd.css" rel="stylesheet">
+    <title>发布新公告</title>
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="index.html" class="site_title">
+                        <span>TysenKLD</span></a>
+                </div>
+                <div class="clearfix"></div>
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="../images/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span>Welcome,</span>
+                        <h2>&nbsp;</h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+                <br/>
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                </div>
+                <!-- /sidebar menu -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <!--<img src="images/img.jpg" alt="">John Doe-->
+                                <span class="fa fa-power-off"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="javascript:;"> Profile</a></li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="badge bg-red pull-right">50%</span>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                                <li><a href="javascript:;">Help</a></li>
+                                <li><a href="bk/login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" title="消息" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <i class="fa fa-info-circle"></i>
+                                <!--<span class="badge bg-green">6</span>-->
+                            </a>
+                        </li>
+                        <li role="presentation" title="查找" class="dropdown">
+                            <a href="javascript:;"
+                               aria-expanded="false">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <ul class="nav navbar-nav navbar-left page_title">
+                <li class="page_name">
+                    发布新公告
+                </li>
+                <li>
+                    <ul class="breadcrumb border">
+                        <li><a href="./../index.html">首页</a></li>
+                        <li><a href="./notice.html">通知管理</a></li>
+                        <li class="active">发布新公告</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+            <br/>
+            <div style="background:#fff; padding:20px;">
+                <form>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <p>公告类型</p>
+                            <select >
+                                <option value="1000">通知</option>
+                                <option value="2000">公司制度</option>
+                                <option value="3000">公司动态</option>
+                                <option value="4000">报备案例</option>
+                                <option value="5000">报备须知</option>
+                                <option value="6000">荣誉榜</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <p>* 创建人</p>
+                            <input type="text" class="big" required=""/>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <p>* 标题</p>
+                            <input type="text" class="big" required=""/>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <p>* 描述</p>
+                            <input type="text" class="big" required=""/>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 ">
+                                <p>* 题图</p>
+                                <input type="file"/>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <p style="line-height:25px;"><input style="vertical-align: middle;" type="checkbox" />是否引用外链(引用外链，正文可以不用编写)</p>
+                            <p>外链地址</p>
+                            <input type="text" class="big"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <p>正文</p>
+                            <textarea id="editor1" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div style="text-align:center;">
+                        <button type="button" class="btn btn-primary btn-lg" style="margin-right:50px;">新增通知</button>
+                        <button type="button" id="cancelBtn" class="btn btn-default btn-lg">取消</button>
+                    </div>
+                    <br/>
+                </form>
+            </div>
+        </div>
+        <footer>
+            Copyright © 2019 TysenKLD. All rights reserved.
+        </footer>
+    </div>
+</div>
+<!-- jQuery -->
+<script src="../../vendors/jquery/dist/jquery.min.js"></script>
+<!--sidemenu-->
+<script src="./../js/sidemenu/index.js"></script>
+<!-- Bootstrap -->
+<script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../../vendors/nprogress/nprogress.js"></script>
+<!-- gauge.js -->
+<script src="../../vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!--paginator-->
+<script src="../../vendors/bootstrap-paginator-master/build/bootstrap-paginator.min.js"></script>
+<!-- iCheck -->
+<script src="../../vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script src="../../vendors/skycons/skycons.js"></script>
+<script src="../../vendors/distpicker-master/dist/distpicker.js"></script>
+<script src="../../vendors/moment/min/moment.min.js"></script>
+<script src="../../vendors/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../../vendors/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../vendors/ckeditor/ckeditor.js"></script>
+<script src="../../vendors/art-template-master/lib/template-web.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="../../build/js/custom.min.js"></script>
+<script src="../../build/js/noticeHonor_noticeAdd.min.js"></script>
+</body>
+</html>

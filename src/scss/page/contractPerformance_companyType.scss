@@ -1,0 +1,53 @@
+#addBtn {
+    cursor: pointer;
+}
+#searchBtn {
+    width: 100px;
+    margin-left: 20%;
+}
+.search_content {
+    background: #fff;
+    overflow: hidden;
+    padding: 20px;
+    margin-top: 15px;
+}
+#fapiaoFilter, #huikuanFilter {
+    ul {
+        float: left;
+        list-style: none;
+        padding: 0px;
+        //overflow: hidden;
+    }
+    li {
+        float: left;
+        //margin-top: 15px;
+        &.active {
+            a {
+                background: #FF6600;
+                color: #fff;
+            }
+        }
+        a {
+            display: block;
+            line-height: 35px;
+            padding: 0px 20px;
+        }
+    }
+}
+.state_actived {
+    background: #1BB394;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+#searchBtn {
+    margin-top: -15px;
+}
+
+.filter_tag {
+    float: left;
+    line-height: 35px;
+    margin-right: 30px;
+}

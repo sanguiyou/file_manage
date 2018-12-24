@@ -1,0 +1,122 @@
+#total_count .x_panel {
+    background-color: transparent;
+    padding: 0px;
+    border: none;
+    margin-top: 1px;
+}
+
+#total_count ul {
+    list-style: none;
+    padding: 0;
+}
+
+#total_count li {
+    height: 225px;
+    padding: 0;
+    border-radius: 4px;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+#total_count li.project_count {
+    background-color: #635bc1;
+}
+
+#total_count li.money_count {
+    background-color: #f84691;
+    margin-top: 18px;
+}
+
+#total_count .name {
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+#total_count .count {
+    margin-left: 20px;
+    font-size: 30px;
+}
+
+#total_count .btn_group {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+    font-size: 0px;
+}
+
+#total_count .btn_group a {
+    display: inline-block;
+    width: 70px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 15px;
+    opacity: 0.5;
+    color: #fff;
+    margin-left: 10px;
+}
+
+#total_count .btn_group a:hover, #total_count .btn_group a.active {
+    background-color: #5951ad;
+    opacity: 1;
+}
+
+#total_count .money_count .btn_group a:hover, #total_count .money_count .btn_group a.active {
+    background-color: #e03f82;
+}
+
+#controy_data .x_content {
+    height: 600px;
+}
+
+#chart_02 {
+    width: 60%;
+    height: 100%;
+    float: left;
+}
+
+#table_content {
+    width: 40%;
+    height: 100%;
+    float: left;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+#chart_03 {
+    height: 400px;
+}
+
+#team_data .btn_group {
+    float: right;
+    line-height: 50px;
+}
+
+#team_data .btn_group a {
+    margin-left: 40px;
+    position: relative;
+}
+
+#team_data .btn_group a:before {
+    content: "";
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    position: relative;
+    left: -10px;
+}
+
+#team_data .btn_group a[data-type="year"]:before {
+    background-color: #9393FE;
+}
+
+#team_data .btn_group a[data-type="done"]:before {
+    background-color: #EA51EE;
+}
+
+#team_data .btn_group a[data-type="backMoney"]:before {
+    background-color: #FDEECF;
+}
