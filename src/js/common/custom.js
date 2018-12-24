@@ -19,8 +19,8 @@ function parseURL(url) {
     return parseResult;
 }
 
-//var remote_host = "http://39.105.146.145:8081";
-var remote_host = "http://192.168.1.102:8081";
+var remote_host = "http://39.105.146.145:8081";
+//var remote_host = "http://192.168.1.102:8081";
 var ACTION_URL ={
     "city_list":remote_host+"/cities/getlistDic",   //市列表
     "province_list":remote_host+"/provinces/getlistDic",  //省列表
@@ -56,93 +56,7 @@ var ACTION_URL ={
     "business_category_list":remote_host+"/businessEntityCategories/getlist", //客户分类列表
     "business_category_delete":remote_host+"/businessEntityCategories/delete", //客户分类删除
     "business_category_detail":remote_host+"/businessEntityCategories/getBusinessEntityCategories", //客户分类详情   
-    "resource":remote_host+"/api/resource",     
-    "product_capacities_delete":remote_host+"/productCapacities/delete", //计量删除
-    "product_capacities_modify":remote_host+"/productCapacities/modify", //计量修改
-    "product_capacities_detail":remote_host+"/productCapacities/getCapacities", 
-    "product_capacities_list":remote_host+"/productCapacities/getList", 
-    "product_categories_delete":remote_host+"/productCategories/delete", 
-    "product_categories_modify":remote_host+"/productCategories/modify", 
-    "product_categories_detail":remote_host+"/productCategories/getProductCategories", 
-    "product_categories_list":remote_host+"/productCategories/getList", 
-    "product_sub_categories_delete":remote_host+"/productSubCategories/delete", 
-    "product_sub_categories_modify":remote_host+"/productSubCategories/modify", 
-    "product_sub_categories_detail":remote_host+"/productSubCategories/getProductSubCategories", 
-    "product_sub_categories_list":remote_host+"/productSubCategories/getList",
-    "product_category_delete":remote_host+"/products/delete",
-    "product_category_detail":remote_host+"/products/getProducts",
-    "product_category_modify":remote_host+"/products/modify",
-    "product_category_list":remote_host+"/products/listPage",
-    "product_model_delete":remote_host+"/productModels/delete",
-    "product_model_detail":remote_host+"/productModels/getProductModels",
-    "product_model_modify":remote_host+"/productModels/modify",
-    "product_model_list":remote_host+"/productModels/listPage",
-    "price_floor_list":remote_host+"/priceFloors/getList",
-    "price_floor_modify":remote_host+"/priceFloors/modify",
-    "price_floor_detail":remote_host+"/priceFloors/getPriceFloors",
-    "price_floor_delete":remote_host+"/priceFloors/deleteLogic",
-    "price_floor_item_list":remote_host+"/priceFloorItems/listPage",
-    "price_floor_item_modify":remote_host+"/priceFloorItems/modify",
-    "price_floor_item_detail":remote_host+"/priceFloorItems/getPriceFloorItems",
-    "price_floor_item_delete":remote_host+"/priceFloorItems/deleteLogic",
-    "price_floor_mapping_list":remote_host+"/pricePerformanceMappings/getList",
-    "price_floor_mapping_modify":remote_host+"/pricePerformanceMappings/modify",
-    "price_floor_mapping_detail":remote_host+"/pricePerformanceMappings/getPriceMappings",
-    "price_floor_mapping_delete":remote_host+"/pricePerformanceMappings/delete",
-    "skus_list":remote_host+"/productSkus/listPage",
-    "skus_modify":remote_host+"/productSkus/modify",
-    "skus_detail":remote_host+"/productSkus/getProductSkus",
-    "skus_delete":remote_host+"/productSkus/delete",
-    "component_skus_list":remote_host+"/productComponentSkus/listPage",
-    "component_skus_modify":remote_host+"/productComponentSkus/modify",
-    "component_skus_detail":remote_host+"/productComponentSkus/getComponentSkus",
-    "component_skus_delete":remote_host+"/productComponentSkus/delete",
-	"component_skus_rela_list":remote_host+"/productComponentSkus/getSkuList",
-    "component_skus_rela_modify":remote_host+"/productComponentSkus/productSkusModify",
-    "component_skus_rela_detail":remote_host+"/productComponentSkus/getSkuInfo",
-    "component_skus_rela_delete":remote_host+"/productComponentSkus/productSkusDelete",
-	"project_delete":remote_host+"/projects/delete",
-	"project_delete_logic":remote_host+"/projects/deleteLogic",
-	"project_do_approved":remote_host+"/projects/doApproved",
-	"project_do_audit":remote_host+"/projects/doAudit",
-	"project_do_finished":remote_host+"/projects/doFinished",
-	"project_do_reject":remote_host+"/projects/doReject",
-	"project_do_report":remote_host+"/projects/doReport",
-	"project_do_sumbit":remote_host+"/projects/doSumbit",
-	"project_detail":remote_host+"/projects/getProjects",
-	"project_list":remote_host+"/projects/listPage",
-	"project_modify":remote_host+"/projects/modify",
-	"project_transfer":remote_host+"/projects/transfer",
-	"project_transfer_batch":remote_host+"/projects/transferBatch",
-	"project_contact_list":remote_host+"/projectContacts/getList",
-    "project_contact_modify":remote_host+"/projectContacts/modify",
-    "project_contact_detail":remote_host+"/projectContacts/getContacts",
-    "project_contact_delete":remote_host+"/projectContacts/delete",
-    "project_product_list":remote_host+"/projectProducts/getList",
-    "project_product_modify":remote_host+"/projectProducts/modify",
-    "project_product_delete":remote_host+"/projectProducts/delete",
-    "project_quotation_list":remote_host+"/projectQuotations/getList",
-    "project_quotation_modify":remote_host+"/projectQuotations/modify",
-    "project_quotation_detail":remote_host+"/projectQuotations/getQuotations",
-    "project_quotation_delete":remote_host+"/projectQuotations/delete",
-    "project_quotation_item_list":remote_host+"/projectQuotationItems/getList",
-    "project_detail_list":remote_host+"/projectDetails/getList",
-    "project_visit_list":remote_host+"/projectVisits/getList",
-    "project_visit_modify":remote_host+"/projectVisits/modify",
-    "project_visit_detail":remote_host+"/projectVisits/getVisits",
-    "project_visit_delete":remote_host+"/projectVisits/delete",
-    "get_industry_parent_list":remote_host+"/industries/getIndustryParentList",    
-    "get_industry_list":remote_host+"/industries/getIndustryList",
-    "get_industry_sub_list":remote_host+"/industries/getIndustrySubList",    
-    "company_structure":remote_host+"/departments/getCompanyStructures", 
-    "contract_list":remote_host+"/agreements/listPage", 
-    "contract_modify":remote_host+"/agreements/modify", 
-    "contract_detail":remote_host+"/agreements/getAgreements",    
-    "contract_select_list":remote_host+"/agreementProductComponentItems/selectList",//组件清单
-    "contract_detail_list":remote_host+"/agreementProductItems/detailList",//组件产品清单    
-    "agreement_details_list":remote_host+"/agreementDetails/getList", //事件记录
-    "agreement_payments":remote_host+"/agreementPayments/listPage", //回款记录    
-    "brand_list":remote_host+"/brands/getList", 
+    "resource":remote_host+"/api/resource",         
 };
 
 var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
@@ -428,7 +342,7 @@ function jquery_ajax(url,post_or_get,post_data,is_json,callback_func){
         contentType: "application/json",
         success: function(e) {                        
             if(e.result == 90000001){//判断登录过期                
-                alert("ajax return 9000001,"+url);
+                //alert("ajax return 9000001,"+url);
                 return;
                 //location.href ="/login.html";
             }
@@ -471,7 +385,7 @@ function jquery_ajax_obj(obj){
         contentType: "application/json",
         success: function(e) {                        
             if(e.result == 90000001){//判断登录过期                
-                alert("ajax return 9000001,"+url);
+                //alert("ajax return 9000001,"+url);
                 return;
                 //location.href ="/login.html";
             }         

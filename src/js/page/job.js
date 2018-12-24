@@ -3,7 +3,9 @@ var vue_instance = new Vue({
     data: {
         list: [],
         search_param:{page:1,"rows":per_page_cnt,"name":""},        
-        totalPages: 0,        
+        totalPages: 0,
+        position_list:[],    
+        form_data:{},    
     },
     methods: {
         list_callback: function (ajax_json) {              
@@ -34,6 +36,11 @@ var vue_instance = new Vue({
             }); 
                               
         },
+        // add_job_layer:function(){                 
+        //     $(".layer").show();  
+        //     $("#add_job_layer").show();              
+
+        // },
         load_list:function(){                 
             console.log(this.search_param);            
             jquery_ajax(ACTION_URL.positions_list,"post",this.search_param,true,this.list_callback);      
@@ -45,6 +52,23 @@ var vue_instance = new Vue({
                     location.href = location.href;
                 }); 
             }                 
+        },
+        submit_form:function () {                        
+            console.log(this.form_data);                                     
+            jquery_ajax(ACTION_URL.positions_modify,"post",this.form_data,true,(json_result)=>{                
+                console.log(json_result);
+                alert("操作成功");
+                if(this.form_data.id > 0){
+                    location.href="/production/department/job.html?current_page="+this.search_param.page;
+                }else{
+                    location.href="/production/department/job.html";
+                }
+            });                    
+        },        
+        load_edit_data(){ //拉取修改页的数据            
+            jquery_ajax(ACTION_URL.positions_getPositions,"post",this.form_data.id,false,(json_result)=>{
+                this.form_data = json_result.data; //赋值                               
+            });                    
         }
         
     },
@@ -54,9 +78,24 @@ var vue_instance = new Vue({
         if(page_param["current_page"] != undefined){
             this.search_param.page = page_param["current_page"];
         }
+        //拉取职位列表          
+        jquery_ajax_obj({"url":ACTION_URL.positions_list,"post_data":{page:1,"rows":per_page_cnt,"name":""},
+            "callback_func":(e)=>{
+                this.position_list = e.data;            
+            },
+        });  
         this.load_list();            
     },
-    mounted() {        
+    mounted() {              
+        $('#myModal').on('show.bs.modal',(e)=> {                        
+            var target = e.relatedTarget;
+            this.form_data.id = target.getAttribute("data-id");  
+            if(this.form_data.id > 0){
+                this.load_edit_data();       
+            }else{
+                this.form_data = {"id":null};
+            }               
+        });
     },
 })
 
