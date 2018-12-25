@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../images/favicon.ico" type="image/ico"/>
+    <!-- Bootstrap -->
+    <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="../../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="../../vendors/timeline/jquery.eeyellow.Timeline.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="../../vendors/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../../build/css/custom.min.css" rel="stylesheet">
+    <link href="../../build/css/job.css" rel="stylesheet">    
+    <title>级别管理</title>
+    <style>
+        .error{
+            color:red;
+        }
+        .form{
+            background: rgba(255,255,255,0.4);
+            width:420px;
+            margin:14% auto;
+            /*margin-right: 350px*/
+        }            
+        /*阴影*/
+        .fa{
+            display: inline-block;top: 25px;left: 6px;position: relative;color: #ccc;
+        }
+        
+        input[type="text"],input[type="password"]{
+            padding-left:26px;
+        }        
+        .checkbox{
+            padding-left:21px;
+        }
+    </style>
+</head>
+<body style="background-color: #c6f0f5">
+    <div class="container">        
+        <div class="form row">
+            <div class="form-horizontal col-md-offset-3" id="login_form">
+                <h3 class="form-title">文件管理平台登录</h3>
+                <form id="form" action="">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <i class="fa fa-user fa-lg"></i>
+                            <input class="form-control required" type="text" placeholder="请输入登录名" id="loginName" name="username" autofocus="autofocus" maxlength="20"/>
+                        </div>
+                        <div class="form-group">
+                                <i class="fa fa-lock fa-lg"></i>
+                                <input class="form-control required" type="password" placeholder="请输入密码" id="password" name="password" maxlength="8"/>	                            
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox pull-left">
+                                <input type="checkbox" name="remember" id="remember" value="0"/><span style="position: relative;top:10px;left: 4px">记住我</span>
+                            </label>                            
+                        </div>
+                        <div class="form-group col-md-offset-9">
+                            <button type="submit" class="btn btn-success pull-right" name="submit">登录</button>
+                        </div>
+                        <div>
+                            <h2>蒂森克罗地技术</h2>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>        
+    </div>
+</body>
+<!-- jQuery -->
+<script src="../../vendors/jquery/dist/jquery.min.js"></script>
+<script src="../../vendors/validator/jquery.validate.min.js"></script>
+<script src="../../vendors/jquery.cookie.js"></script>
+<!--sidemenu-->
+<script src="./../js/sidemenu/index.js"></script>
+<script src="../../vendors/vue/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../../vendors/nprogress/nprogress.js"></script>
+<!-- gauge.js -->
+<script src="../../vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!--paginator-->
+<script src="../../vendors/bootstrap-paginator-master/build/bootstrap-paginator.min.js"></script>
+<!-- iCheck -->
+<script src="../../vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script src="../../vendors/skycons/skycons.js"></script>
+<script src="../../vendors/art-template-master/lib/template-web.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="../../vendors/moment/min/moment.min.js"></script>
+<script src="../../vendors/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../../vendors/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../build/js/custom.min.js"></script>
+
+<script>
+    $(function () {
+        getCookie();//获取cookie
+        remeberNameAndPwd();//rememberMe点击事件        
+    });
+		$("#form").validate({
+            rules: {
+                username: "required",		 
+                password: "required",               
+            },
+            messages: {
+                username: "*用户名必须填写!",				                
+                password:"*密码必须填写!",	
+            }
+        });
+        
+        $("form").submit(function(){
+            var flag = $('#form').valid();//校验合格
+            if(flag){
+                var load = top.layer.load();
+                var $form = $('#form');
+                $.ajax({
+                    url:$form.attr('action'),
+                    data:$form.serialize(),
+                    type:'post',
+                    beforeSend:function(){
+                        layer.msg('正在登录');
+                    },
+                    success:function(data){
+                        if(data=="success"){
+                            setTimeout(function(){
+                                layer.close(load);
+                                layer.msg('登录成功');
+                                setAndRemoveCookie();//是否写入cookie
+                            },1000);
+                            setTimeout(function(){
+                                //登录返回
+                                window.location.href='/production/department/file_center.html';
+                            },2000);
+                        }else{
+                            setTimeout(function(){
+                                layer.close(load);
+                                layer.msg('身份验证失败,请检查用户名或密码是否正确!',{
+                                    time:3500 //3.5秒钟之后关闭
+                                });
+                            },1000);
+                        }
+                    },
+                    error:function(e){
+                        console.log(e);
+                        layer.msg('出错咯o(╥﹏╥)o,请与后台联系!',{
+                            btn:'我知道了'
+                        })
+                    }
+                })
+            }
+        });	     		
+		//记住用户名,默认不记住
+		var checkFlag = false;
+	
+        function remeberNameAndPwd(){
+        	//这里是当页面是从注册页面注册成功过来 
+        	var remFlag = $("input[type='checkbox']").is(":checked");
+        	if(remFlag==true){
+        		checkFlag = true;	
+        	}
+        	//当在login.jsp页面点击是否记住
+        	$("#rememberMe").click(function(){
+        		var remFlag = $("input[type='checkbox']").is(":checked");
+                if(remFlag==true){
+                    $("#rememberMe").attr("checked",true);
+                    checkFlag=true;
+                }else{
+                	$("#rememberMe").attr("checked",false);
+                	checkFlag=false;
+                }
+        	})
+        }
+		
+		//写入cookie与删除
+		function setAndRemoveCookie(){
+        //注意 密码写入cookie的时候这里没有写加密 是不安全的
+			if(checkFlag){
+				var loginName = $("#loginName").val();
+				var password = $("#password").val();
+				$.cookie("remember","true",{expires : 7 })//单位：天
+				$.cookie("loginName",loginName,{expires: 7 });
+				$.cookie("password",password,{expires: 7 })
+				console.log($.cookie("loginName"));
+			}else{
+				//删除cookie
+				$.cookie("remember","false",{expires:-1 });
+				$.cookie("loginName",null,{expires:-1});
+				$.cookie("password",null,{expires:-1});
+				console.log($.cookie("password"));
+			}
+		}
+		//获取cookie
+		function getCookie(){
+			if($.cookie("remember")=="true"){
+				$("#rememberMe").attr("checked",true);
+				$("#loginName").val($.cookie("loginName"));
+				$("#password").val($.cookie("password"));
+				console.log($.cookie("password"));
+            }
+        }
+</script>
+
+</body>
+</html>

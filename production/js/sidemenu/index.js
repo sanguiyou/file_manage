@@ -1,6 +1,10 @@
 (function() {
     var menuList = [
         {
+            text: "登录页",
+            href: "/production/department/login.html"
+        },
+        {
             text: "文件中心",
             href: "/production/department/file_center.html"
         },
