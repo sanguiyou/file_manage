@@ -2,15 +2,15 @@
     var menuList = [
         {
             text: "文件中心",
-            href: "/production/index.html"
+            href: "/production/department/file_center.html"
         },
         {
             text: "下载列表",
-            href: "/production/department/department.html"
+            href: "/production/department/download_list.html"
         },
         {
             text: "授权人员",
-            href: "/production/department/department.html"
+            href: "/production/department/grant.html"
         },
         {
             text: "搜索",
@@ -18,11 +18,11 @@
         },
         {
             text: "级别管理",
-            href: "/production/department/department.html"
+            href: "/production/department/level.html"
         },
         {
             text: "部门管理",
-            href: '/production/department/department.html'
+            href: '/production/department/department_new.html'
         },
         {
             text: "职位设置",
@@ -30,15 +30,15 @@
         },
         {
             text: "账户管理",
-            href: '/production/department/clerk.html'
+            href: '/production/department/account.html'
         },
         {
             text: "目录管理",
-            href: '/production/department/clerk.html'
+            href: '/production/department/file_category.html'
         },
         {
             text: "文件管理",
-            href: '/production/department/clerk.html'
+            href: '/production/department/file.html'
         }        
     ];
     var html = "";
