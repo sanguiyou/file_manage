@@ -25,11 +25,7 @@ var ACTION_URL ={
     "city_list":remote_host+"/cities/getlistDic",   //市列表
     "province_list":remote_host+"/provinces/getlistDic",  //省列表
     "area_list":remote_host+"/areas/getlistDic",  //区列表
-    "login":remote_host+"/login",  //登录验证
-    "shadow_users_modify":remote_host+"/shadowUsers/modify", //代理人修改接口
-    "shadow_users_list":remote_host+"/shadowUsers/listPage", //代理人列表
-    "shadow_users_delete":remote_host+"/shadowUsers/delete", //代理人删除
-    "shadow_user_detail":remote_host+"/shadowUsers/getShadowUser", //代理商详情    
+    "login":remote_host+"/login",  //登录验证    
     "user_list":remote_host+"/user/userList", //用户列表
     "user_list_page":remote_host+"/user/listPage", //用户带翻页  
     "user_detail":remote_host+"/user/getUsers", //用户详情
@@ -43,19 +39,7 @@ var ACTION_URL ={
     "departments_list_tree":remote_host+"/departments/listTree", //部门列表        
     "departments_modify":remote_host+"/departments/modify", //部门修改
     "departments_delete":remote_host+"/departments/delete", //部门删除
-    "departments_get_dep_users":remote_host+"/departments/getDeptUsers", //部门下的人    
-    "companies_modify":remote_host+"/companies/modify", //公司修改接口
-    "companies_list":remote_host+"/companies/listPage", //公司列表
-    "companies_delete":remote_host+"/companies/delete", //公司删除
-    "companies_get_companies":remote_host+"/companies/getCompanies", //公司详情  
-    "business_modify":remote_host+"/businessEntities/modify", //客户修改接口
-    "business_list":remote_host+"/businessEntities/listPage", //客户列表
-    "business_delete":remote_host+"/businessEntities/delete", //客户删除
-    "business_get_detail":remote_host+"/businessEntities/getBusinessEntities", //客户详情   
-    "business_category_modify":remote_host+"/businessEntityCategories/modify", //客户分类修改接口
-    "business_category_list":remote_host+"/businessEntityCategories/getlist", //客户分类列表
-    "business_category_delete":remote_host+"/businessEntityCategories/delete", //客户分类删除
-    "business_category_detail":remote_host+"/businessEntityCategories/getBusinessEntityCategories", //客户分类详情   
+    "departments_get_dep_users":remote_host+"/departments/getDeptUsers", //部门下的人        
     "resource":remote_host+"/api/resource",         
 };
 
@@ -350,7 +334,7 @@ function jquery_ajax(url,post_or_get,post_data,is_json,callback_func){
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {    
             console.log(XMLHttpRequest.status);                    
-            alert(XMLHttpRequest.readyState+url);
+            //alert(XMLHttpRequest.readyState+url);
             //alert(textStatus);
         },
         complete: function(XMLHttpRequest, textStatus) {
@@ -394,7 +378,7 @@ function jquery_ajax_obj(obj){
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {    
             console.log(XMLHttpRequest.status);                    
-            alert(XMLHttpRequest.readyState+url);
+            //alert(XMLHttpRequest.readyState+url);
             //alert(textStatus);
         },
         complete: function(XMLHttpRequest, textStatus) {
@@ -428,7 +412,7 @@ function jquery_ajax_notoken(url,post_or_get,post_data,callback_func){
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {    
             console.log(XMLHttpRequest.status);                    
-            alert(XMLHttpRequest.readyState+url);
+            //alert(XMLHttpRequest.readyState+url);
             //alert(textStatus);
         },
         complete: function(XMLHttpRequest, textStatus) {

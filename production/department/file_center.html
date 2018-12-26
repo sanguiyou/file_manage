@@ -47,8 +47,8 @@
                         <img src="../images/img.jpg" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2>&nbsp;</h2>
+                        <span data-toggle="modal" data-target="#update_pwd">方晓燕,</span>
+                        <h2>技术部/电气工程师</h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -111,12 +111,7 @@
             <ul class="nav navbar-nav navbar-left page_title">
                 <li class="page_name">
                     文件中心
-                </li>
-                <li >
-                    <ul class="breadcrumb border">                        
-                        <li class="active"><span id="addBtn" data-toggle="modal" data-target="#myModal" data-id="0">+上传文件</span></li>
-                    </ul>
-                </li>                
+                </li>                             
             </ul>
             <div class="clearfix"></div>
             <div class="row special">
@@ -172,39 +167,79 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title" id="myModalLabel" v-html="title"></h4>
+                                <h4 class="modal-title" id="myModalLabel">下载申请</h4>
                             </div>
                             <div class="modal-body">
-                                <div style="padding: 5px 30px;">
-                                    <form id="form_lable">
-                                        <div style="margin-top:10px;" class="row">
-                                            <div style="margin-top:10px;" class="row">
-                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                    <p >* 文件名</p>
-                                                    <input type="text" name="name" v-model="form_data.name"/>
-                                                </div>
-                                            </div>    
-                                            <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px">
-                                                <p >级别</p>
-                                                <select v-model="form_data.pid">
-                                                    <option v-for="position in position_list" :value="position.id">{{position.name}}</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px"> 
-                                                <p >目录</p>
-                                                <select v-model="form_data.pid">
-                                                    <option v-for="position in position_list" :value="position.id">{{position.name}}</option>
-                                                </select>
-                                            </div>                                          
-                                        </div>
-                                    </form>
+                                <div style="padding: 5px 30px;">    
+                                    <div style="margin-top:10px;" class="row">  
+                                        <h3>文件名:<span>KBS系列1.PDF</span></h3>
+                                    </div>                               
+                                    <div style="margin-top:10px;margin-left: 40px" class="row">                                              
+                                        <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;font-size: 14px;color:blue;">                                            
+                                                <template v-for="user_info_obj in grant_user_list_info">
+                                                    <p><span>王长伟</span>， 微信：<span>32132121</span>，电话：<span>1232131321</span>，</p>
+                                                    <p>邮箱：<span>3444@qq.com</span> </p>                                                    
+                                                </template>                                            
+                                        </div>                                                                               
+                                    </div>    
+                                    <div style="margin-top:10px;" class="row"> 
+                                        <h3>说明:</h3>
+                                        <p>1、重要文件，需授权后下载。</p>
+                                        <p>2、点击确定申请后，请在1小时内通知授权人授权</p>
+                                        <p>3、进入我的下载列表可查看授权和下载状态</p>
+                                    </div>                                   
                                 </div>
                                 <br/>
                                  
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="button" class="btn btn-primary" @click="submit_form()">确定</button>
+                                <button type="button" class="btn btn-primary" @click="apply_download_file()">确定申请</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+            </div>
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="update_pwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel">修改密码</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div style="padding: 5px 30px;">    
+                                    <div style="margin-top:10px;" class="row">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <p >姓名：安保部</p>                                           
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <p >账号：安保部</p>                                            
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <p >当前密码：</p>
+                                            <input type="text" name="name" v-model="form_data.pwd"/>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <p >新密码：</p>
+                                            <input type="text" name="name" v-model="form_data.name"/>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <p >确认新密码：</p>
+                                            <input type="text" name="name" v-model="form_data.name"/>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                                <br/>
+                                 
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-primary" @click="apply_download_file()">确定</button>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->

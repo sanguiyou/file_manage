@@ -47,8 +47,8 @@
                         <img src="../images/img.jpg" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2>&nbsp;</h2>
+                        <span>JACK,<span style="color:deepskyblue" data-toggle="modal" data-target="#get_secret_key">[密钥]</span></span>
+                        <h2>&nbsp;技术部</h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -157,8 +157,7 @@
                                 <td v-html="list_value.name"></td>
                                 <td v-html="list_value.id"></td>                              
                                 <td>
-                                    <button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#myModal">通过</button>
-                                    <button class="btn btn-danger" @click="del_record(list_value.id)">删除</button>                                    
+                                    <button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#myModal">通过</button>                                                                   
                                 </td>
                             </tr>                            
                             </tbody>
@@ -175,30 +174,29 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title" id="myModalLabel" v-html="title"></h4>
+                                <h4 class="modal-title" id="myModalLabel">确认通过</h4>
                             </div>
                             <div class="modal-body">
                                 <div style="padding: 5px 30px;">
                                     <form id="form_lable">
                                         <div style="margin-top:10px;" class="row">
                                             <div style="margin-top:10px;" class="row">
-                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                    <p >* 文件名</p>
-                                                    <input type="text" name="name" v-model="form_data.name"/>
+                                                <div class="col-md-2 col-sm-2col-xs-2">
+                                                    <p >文件名:</p>                                                    
                                                 </div>
-                                            </div>    
-                                            <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px">
-                                                <p >级别</p>
-                                                <select v-model="form_data.pid">
-                                                    <option v-for="position in position_list" :value="position.id">{{position.name}}</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px"> 
-                                                <p >目录</p>
-                                                <select v-model="form_data.pid">
-                                                    <option v-for="position in position_list" :value="position.id">{{position.name}}</option>
-                                                </select>
-                                            </div>                                          
+                                                <div class="col-md-10 col-sm-10 col-xs-10">
+                                                    <p >KBS系列电气设计原理与应用1.PDF</p>                                                    
+                                                </div>
+                                            </div>   
+                                            <br> 
+                                            <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px">                                             
+                                                <div class="col-md-2 col-sm-2col-xs-2">
+                                                    <p >密匙:</p>                                                    
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                                    <p ><input type="text" name="name" v-model="form_data.aname"/></p>                                                    
+                                                </div>
+                                            </div>                                                                                   
                                         </div>
                                     </form>
                                 </div>
@@ -207,7 +205,49 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="button" class="btn btn-primary" @click="submit_form()">确定</button>
+                                <button type="button" class="btn btn-primary" @click="submit_form()">通过</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+            </div>
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="get_secret_key" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel">您的本月授权密匙</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div style="padding: 5px 30px;">
+                                    <form id="form_lable">
+                                        <div style="margin-top:10px;" class="row">
+                                            <div style="margin-top:10px;" class="row">
+                                                <div class="col-md-2 col-sm-2col-xs-2">
+                                                    <p style="position: relative;top:10px">密匙:</p>                                                    
+                                                </div>
+                                                <div class="col-md-10 col-sm-10 col-xs-10">
+                                                    <p >NX3C967B0O2L1 <button type="button" class="btn btn-default">复制</button></p>                                                    
+                                                </div>
+                                            </div>   
+                                            <br> 
+                                            <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px">                                             
+                                                <div class="col-md-2 col-sm-2col-xs-2" style="padding: 0px">
+                                                    <p>说明:</p>                                                    
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-6" style="padding: 0px">
+                                                    <p >密匙每月1日上午10点自动更新请复制密匙并授权下载</p>                                                    
+                                                </div>
+                                            </div>                                                                                   
+                                        </div>
+                                    </form>
+                                </div>
+                                <br/>
+                                 
+                            </div>
+                            <div class="modal-footer">                                
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">完成返回</button>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->

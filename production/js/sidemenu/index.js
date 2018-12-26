@@ -15,11 +15,7 @@
         {
             text: "授权人员",
             href: "/production/department/grant.html"
-        },
-        {
-            text: "搜索",
-            href: "/production/department/department.html"
-        },
+        },        
         {
             text: "级别管理",
             href: "/production/department/level.html"
@@ -43,6 +39,10 @@
         {
             text: "文件管理",
             href: '/production/department/file.html'
+        } ,
+        {
+            text: "密钥管理",
+            href: '/production/department/secret.html'
         }        
     ];
     var html = "";

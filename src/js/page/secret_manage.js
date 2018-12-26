@@ -9,7 +9,6 @@ var vue_instance = new Vue({
         title:"",
         jquery_validate_obj:{},
         order_by:true,
-        grant_user_list_info:[{},{}],
     },
     methods: {
         list_callback: function (ajax_json) {              
@@ -84,12 +83,6 @@ var vue_instance = new Vue({
         load_edit_data(){ //拉取修改页的数据            
             jquery_ajax(ACTION_URL.positions_getPositions,"post",this.form_data.id,false,(json_result)=>{
                 this.form_data = json_result.data; //赋值                               
-            });                    
-        },
-        apply_download_file(){             
-            jquery_ajax(ACTION_URL.positions_getPositions,"post",this.form_data.id,false,(json_result)=>{
-                alert("OK");                            
-                //location.href="/production/department/file_center.html";
             });                    
         }
         
