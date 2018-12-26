@@ -6,6 +6,7 @@ var vue_instance = new Vue({
         totalPages: 0,
         position_list:[],    
         form_data:{},    
+        title:"",
     },
     methods: {
         list_callback: function (ajax_json) {              
@@ -105,8 +106,10 @@ var vue_instance = new Vue({
             this.form_data.id = target.getAttribute("data-id");  
             if(this.form_data.id > 0){
                 this.load_edit_data();       
+                this.title="修改职位";
             }else{
                 this.form_data = {"id":null};
+                this.title="新增职位";
             }               
         });
     },

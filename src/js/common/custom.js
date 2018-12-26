@@ -41,6 +41,7 @@ var ACTION_URL ={
     "departments_delete":remote_host+"/departments/delete", //部门删除
     "departments_get_dep_users":remote_host+"/departments/getDeptUsers", //部门下的人        
     "resource":remote_host+"/api/resource",         
+    "company_structure":remote_host+"/departments/getCompanyStructures", 
 };
 
 var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],

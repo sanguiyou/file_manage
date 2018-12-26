@@ -9,6 +9,8 @@ var vue_instance = new Vue({
         title:"",
         jquery_validate_obj:{},
         order_by:true,
+        left_list:[], 
+        zNodes:[],
     },
     methods: {
         list_callback: function (ajax_json) {              
@@ -84,8 +86,15 @@ var vue_instance = new Vue({
             jquery_ajax(ACTION_URL.positions_getPositions,"post",this.form_data.id,false,(json_result)=>{
                 this.form_data = json_result.data; //赋值                               
             });                    
-        }
-        
+        },
+        left_tree_on_check(e, treeId, treeNode){            
+            var id = treeNode.id;
+            if( treeNode.checked ){                 
+                console.log("checked:"+id);
+            }else{
+                console.log("unchecked:"+id);
+            }
+        },          
     },
     created: function () {
         var page_param = parseURL(window.location.href);
@@ -121,6 +130,49 @@ var vue_instance = new Vue({
                 name: "*文件名必须填写!",				                
 			}
         }); 
+
+        var setting = {
+            check: {
+                enable: true
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            }
+        };   
+        this.zNodes =[
+            { id:1, pId:0, name:"徐海涛部门", open:true},
+            { id:11, pId:1, name:"杨锴", open:true},
+            { id:12, pId:1, name:"陈子栋部门1", open:true},
+            { id:2, pId:1, name:"陈子栋部门2", open:true},
+            { id:22, pId:2, name:"赵海洋部门3", open:true},
+            { id:221, pId:22, name:"李松"},
+            { id:222, pId:22, name:"胡江"},
+            { id:23, pId:2, name:"李文东"}
+        ];                                       
+        var left_tree_obj = $.fn.zTree.init($("#left_tree"), setting, this.zNodes);
+        left_tree_obj.setting.callback.onCheck = this.left_tree_on_check;    
+
+        //拉目录列表
+        jquery_ajax_obj({"url":ACTION_URL.company_structure,"post_data":undefined,"is_json_param":true,
+            "callback_func":(e)=>{    
+                console.log(e.data);                
+                // this.zNodes = e.data;      
+                // this.zNodes =[
+                //     { id:1, pId:0, name:"徐海涛部门", open:true},
+                //     { id:11, pId:1, name:"杨锴", open:true},
+                //     { id:12, pId:1, name:"陈子栋部门", open:true},
+                //     { id:2, pId:0, name:"陈子栋部门", open:true},
+                //     { id:22, pId:2, name:"赵海洋部门", open:true},
+                //     { id:221, pId:22, name:"李松"},
+                //     { id:222, pId:22, name:"胡江"},
+                //     { id:23, pId:2, name:"李文东"}
+                // ];                                    
+                // var left_tree_obj = $.fn.zTree.init($("#left_tree"), setting, this.zNodes);
+                // left_tree_obj.setting.callback.onCheck = this.left_tree_on_check;                        
+            },
+        });   
     },
 })
 

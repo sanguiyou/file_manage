@@ -143,12 +143,11 @@
                 </li>
                 <li >
                     <ul class="breadcrumb border">                        
-                        <li class="active"><a href="#" >职位设置</a></li>
+                        <li >
+                            <span id="addBtn" data-toggle="modal" data-target="#myModal" data-id="0">+新增职位</span>
+                        </li>
                     </ul>
-                </li>
-                <li >
-                    <span id="addBtn" data-toggle="modal" data-target="#myModal" data-id="0">+新增职位</span>
-                </li>
+                </li>                
             </ul>
             <div class="clearfix"></div>
             <div class="row special">
@@ -172,17 +171,19 @@
                         <table class="table  table-striped">
                             <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>职位名称</th>
-                                <th>任务标准</th>
-                                <th>添加日期</th>
+                                <th>所属部门</th>
+                                <th>备注</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="list_value in list">
-                                <td><a href="./detail.html" >{{list_value.name}}</a></td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                            <tr v-for="obj in list">
+                                <td v-hmtl="obj.id"></td>
+                                <td v-hmtl="obj.name">Otto</td>
+                                <td v-hmtl="obj.department_id">@mdo</td>
+                                <td v-hmtl="obj.note"></td>
                                 <td>
                                     <button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#myModal">修改</button>
                                     <button class="btn btn-danger" @click="del_record(list_value.id)">删除</button>                                    
@@ -202,7 +203,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title" id="myModalLabel">修改职位</h4>
+                                <h4 class="modal-title" id="myModalLabel" v-html="title"></h4>
                             </div>
                             <div class="modal-body">
                                 <div style="padding: 5px 30px;">
@@ -213,9 +214,9 @@
                                                 <input type="text" v-model="form_data.name"/>
                                             </div>
                                         </div>  
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <p >所属上级</p>
-                                            <select v-model="form_data.pid">
+                                        <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+                                            <p >所属部门</p>
+                                            <select v-model="form_data.department_id">
                                                 <option v-for="position in position_list" :value="position.id">{{position.name}}</option>
                                             </select>
                                         </div>
