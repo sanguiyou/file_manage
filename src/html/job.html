@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../images/favicon.ico" type="image/ico"/>
+    <!-- Bootstrap -->
+    <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="../../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="../../vendors/timeline/jquery.eeyellow.Timeline.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="../../vendors/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../../build/css/custom.min.css" rel="stylesheet">
+    <link href="../../build/css/job.css" rel="stylesheet">
+    <style>
+        /* .layer{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: #4e556f;
+            top: 0px;
+            z-index: 101;
+            display: none;
+            opacity: 0.57;
+        }
+        .custom_modal{
+            display: none;
+            width: 480px;
+            height: 380px;
+            padding: 30px;
+            padding-bottom: 25px;
+            display:none;
+            background: #FFF;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            box-shadow: 0px 0px 4px rgba(0,0,0,0.7);
+            -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.7);
+            -moz-box-shadow: 0 0px 4px rgba(0,0,0,0.7);
+            position: absolute;
+            z-index: 9999;
+            margin:auto;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+        } */
+    </style>
+    <title>职位设置</title>
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="index.html" class="site_title">
+                        <span>TysenKLD</span></a>
+                </div>
+                <div class="clearfix"></div>
+                <!-- menu profile quick info -->
+                @@include('./left_part.html')
+                <!-- /menu profile quick info -->
+                <br/>
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                </div>
+                <!-- /sidebar menu -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        @@include('./header.html')
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main" id="app">
+            <ul class="nav navbar-nav navbar-left page_title">
+                <li class="page_name">
+                    职位设置
+                </li>
+                <li >
+                    <ul class="breadcrumb border">                        
+                        <li >
+                            <span id="addBtn" data-toggle="modal" data-target="#myModal" data-id="0">+新增职位</span>
+                        </li>
+                    </ul>
+                </li>                
+            </ul>
+            <div class="clearfix"></div>
+            <div class="row special">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="search_content">
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <p >职位名称</p>
+                            <input type="text" v-model="search_param.name"/>
+                        </div>                        
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <p>&nbsp;</p>
+                            <button type="button" id="searchBtn" class="btn btn-primary" @click="load_list()">搜索</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel tile">
+                        <table class="table  table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>职位名称</th>
+                                <th>所属部门</th>
+                                <th>备注</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="obj in list">
+                                <td v-hmtl="obj.id"></td>
+                                <td v-hmtl="obj.name">Otto</td>
+                                <td v-hmtl="obj.department_id">@mdo</td>
+                                <td v-hmtl="obj.note"></td>
+                                <td>
+                                    <button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#myModal">修改</button>
+                                    <button class="btn btn-danger" @click="del_record(list_value.id)">删除</button>                                    
+                                </td>
+                            </tr>                            
+                            </tbody>
+                        </table>
+                        <div class="page_content">
+                            <ul id="pageLimit1"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel" v-html="title"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <div style="padding: 5px 30px;">
+                                    <div style="margin-top:10px;" class="row">
+                                        <div style="margin-top:10px;" class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <p >* 名称</p>
+                                                <input type="text" v-model="form_data.name"/>
+                                            </div>
+                                        </div>  
+                                        <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+                                            <p >所属部门</p>
+                                            <select v-model="form_data.department_id">
+                                                <option v-for="position in position_list" :value="position.id">{{position.name}}</option>
+                                            </select>
+                                        </div>
+                                        <div style="margin-top:10px;" class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <p >备注</p>
+                                                <input type="text" v-model="form_data.note"/>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+                                <br/>
+                                 
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-primary" @click="submit_form()">确定</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+            </div>
+        </div>        
+        <!--
+        <div class="layer"></div>
+        <div id="add_job_layer" class="custom_modal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="$('#add_job_layer').hide();">×</button>
+                <h4 class="modal-title" id="myModalLabel">New Calendar Entry</h4>
+            </div>
+            <div class="modal-body">
+                <form id="antoform" class="form-horizontal calender" role="form">
+                    <div class="form-group">
+                    <label class="col-sm-3 control-label">Title</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="title" name="title">
+                    </div>
+                    </div>
+                    <div class="form-group">
+                    <label class="col-sm-3 control-label">Description</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Description</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary antosubmit">Save changes</button>
+            </div>
+                
+        </div>        
+        -->            
+        @@include('./update_pwd_layer.html')
+        <footer>
+            Copyright © 2019 TysenKLD. All rights reserved.
+        </footer>
+    </div>    
+</div>
+<!-- jQuery -->
+<script src="../../vendors/jquery/dist/jquery.min.js"></script>
+<!--sidemenu-->
+<script src="./../js/sidemenu/index.js"></script>
+<script src="../../vendors/vue/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../../vendors/nprogress/nprogress.js"></script>
+<!-- gauge.js -->
+<script src="../../vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!--paginator-->
+<script src="../../vendors/bootstrap-paginator-master/build/bootstrap-paginator.min.js"></script>
+<!-- iCheck -->
+<script src="../../vendors/iCheck/icheck.min.js"></script>
+<script src="../../vendors/jquery.leanModal.min.js"></script>
+<!-- Skycons -->
+<script src="../../vendors/skycons/skycons.js"></script>
+<script src="../../vendors/art-template-master/lib/template-web.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="../../vendors/moment/min/moment.min.js"></script>
+<script src="../../vendors/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../../vendors/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../build/js/custom.min.js"></script>
+<script src="../../build/js/job.min.js"></script>
+
+</body>
+</html>

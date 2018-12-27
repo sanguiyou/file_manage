@@ -1,0 +1,44 @@
+<div class="modal fade" id="update_pwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">修改密码</h4>
+                </div>
+                <div class="modal-body">
+                    <div style="padding: 5px 30px;">    
+                        <div style="margin-top:10px;" class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <p >姓名：安保部</p>                                           
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <p >账号：安保部</p>                                            
+                            </div>
+                            <br>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <p >当前密码：</p>
+                                <input type="text" name="name" v-model="form_data.pwd"/>
+                            </div>
+                            <br>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <p >新密码：</p>
+                                <input type="text" name="name" v-model="form_data.name"/>
+                            </div>
+                            <br>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <p >确认新密码：</p>
+                                <input type="text" name="name" v-model="form_data.name"/>
+                            </div>
+                        </div>                                    
+                    </div>
+                    <br/>
+                     
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" @click="apply_download_file()">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</div>
