@@ -149,17 +149,17 @@
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <p >* 手机号(登录名)</p>
-                                                    <input type="text" name="name" v-model="form_data.name"/>
+                                                    <input type="text" name="name" v-model="form_data.nickname"/>
                                                 </div>
                                             </div>   
                                             <div style="margin-top:10px;" class="row">
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <p >* 密码</p>
-                                                    <input type="text" name="name" v-model="form_data.name"/>
+                                                    <input type="text" name="name" v-model="form_data.password"/>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <p >性别</p>
-                                                    <select v-model="form_data.genede">
+                                                    <select v-model="form_data.sex">
                                                         <option value="1">男</option>
                                                         <option value="2">女</option>
                                                     </select>
@@ -168,23 +168,23 @@
                                             <div style="margin-top:10px;" class="row">
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <p >微信</p>
-                                                    <input type="text" name="name" v-model="form_data.name"/>
+                                                    <input type="text" name="wechat" v-model="form_data.wechat"/>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <p >邮箱</p>
-                                                    <input type="text" name="name" v-model="form_data.name"/>
+                                                    <input type="text" name="email" v-model="form_data.email"/>
                                                 </div>
                                             </div>  
                                             <div style="margin-top:10px;" class="row">
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <p >部门</p>
-                                                    <select v-model="form_data.pid">
+                                                    <select v-model="form_data.department_id">
                                                         <option v-for="position in position_list" :value="position.id">{{position.name}}</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <p >职位</p>
-                                                    <select v-model="form_data.pid">
+                                                    <select v-model="form_data.position_id">
                                                         <option v-for="position in position_list" :value="position.id">{{position.name}}</option>
                                                     </select>
                                                 </div>
@@ -192,11 +192,11 @@
                                             <div style="margin-top:10px;" class="row">
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <p >公司</p>
-                                                    <input type="text" name="name" v-model="form_data.name"/>
+                                                    <input type="text" name="company" v-model="form_data.company"/>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <p >备注</p>
-                                                    <input type="text" name="name" v-model="form_data.name"/>
+                                                    <input type="text" name="note" v-model="form_data.note"/>
                                                 </div>
                                             </div>                                      
                                         </div>

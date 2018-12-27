@@ -161,14 +161,13 @@
                                             </div>    
                                             <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px">
                                                 <p >级别</p>
-                                                <select v-model="form_data.pid">
+                                                <select v-model="form_data.file_level_id">
                                                     <option v-for="position in position_list" :value="position.id">{{position.name}}</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px"> 
                                                 <p >目录</p>                                                                                                
                                                 <div id="left_tree" class="ztree" style="max-height: 400px;overflow: auto"></div>
-
                                             </div>                                          
                                         </div>
                                     </form>

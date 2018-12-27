@@ -101,7 +101,7 @@ var vue_instance = new Vue({
         this.load_list();            
     },
     mounted() {              
-        $('#myModal').on('show.bs.modal',(e)=> {                        
+        $('#myModal').on('show.bs.modal',(e)=> {                                  
             var target = e.relatedTarget;
             this.form_data.id = target.getAttribute("data-id");  
             if(this.form_data.id > 0){
@@ -110,7 +110,7 @@ var vue_instance = new Vue({
             }else{
                 this.form_data = {"id":null};
                 this.title="新增职位";
-            }               
+            }                           
         });
     },
 })

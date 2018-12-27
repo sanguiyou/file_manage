@@ -89,6 +89,7 @@ var vue_instance = new Vue({
         },
         left_tree_on_check(e, treeId, treeNode){            
             var id = treeNode.id;
+            this.form_data.parent_id = treeNode.id;
             if( treeNode.checked ){                 
                 console.log("checked:"+id);
             }else{
