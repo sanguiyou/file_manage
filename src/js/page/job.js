@@ -3,14 +3,14 @@ var vue_instance = new Vue({
     data: {
         list: [],
         search_param:{page:1,"rows":per_page_cnt,"name":""},        
-        totalPages: 0,
-        position_list:[],    
+        totalPages: 0,    
         form_data:{},    
+        departments_list:[],
         title:"",
     },
     methods: {
         list_callback: function (ajax_json) {              
-            this.list = ajax_json.data;
+            this.list = ajax_json.data.records;
             this.totalPages = ajax_json.data.pages;      
                         
             $('#pageLimit1').bootstrapPaginator({
@@ -80,7 +80,7 @@ var vue_instance = new Vue({
             });                    
         },        
         load_edit_data(){ //拉取修改页的数据            
-            jquery_ajax(ACTION_URL.positions_getPositions,"post",this.form_data.id,false,(json_result)=>{
+            jquery_ajax(ACTION_URL.positions_detail,"post",this.form_data.id,false,(json_result)=>{
                 this.form_data = json_result.data; //赋值                               
             });                    
         }
@@ -91,11 +91,10 @@ var vue_instance = new Vue({
         console.log(page_param["current_page"]);
         if(page_param["current_page"] != undefined){
             this.search_param.page = page_param["current_page"];
-        }
-        //拉取职位列表          
-        jquery_ajax_obj({"url":ACTION_URL.positions_list,"post_data":{page:1,"rows":per_page_cnt,"name":""},
+        }          
+        jquery_ajax_obj({"url":ACTION_URL.departments_list,"post_data":{page:1,"rows":per_page_cnt,"name":""},
             "callback_func":(e)=>{
-                this.position_list = e.data;            
+                this.departments_list = e.data.records;            
             },
         });  
         this.load_list();            

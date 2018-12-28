@@ -4,7 +4,8 @@ var vue_instance = new Vue({
         list: [],
         search_param:{page:1,"rows":per_page_cnt,"name":""},        
         totalPages: 0,
-        position_list:[],    
+        position_list:[],   
+        departments_list:[], 
         form_data:{},    
         title:"",
         jquery_validate_obj:{},
@@ -12,7 +13,7 @@ var vue_instance = new Vue({
     },
     methods: {
         list_callback: function (ajax_json) {              
-            this.list = ajax_json.data;
+            this.list = ajax_json.data.records;
             this.totalPages = ajax_json.data.pages;      
                         
             $('#pageLimit1').bootstrapPaginator({
@@ -34,7 +35,7 @@ var vue_instance = new Vue({
                 onPageClicked: (event, originalEvent, type, page)=> {
                     this.search_param.page = page;
                     console.log("clicked page", page);
-                    jquery_ajax(ACTION_URL.positions_list,"post",this.search_param,true,this.list_callback);  
+                    jquery_ajax(ACTION_URL.user_list,"post",this.search_param,true,this.list_callback);  
                 }
             }); 
                               
@@ -54,11 +55,11 @@ var vue_instance = new Vue({
         },
         load_list:function(){                 
             console.log(this.search_param);            
-            jquery_ajax(ACTION_URL.positions_list,"post",this.search_param,true,this.list_callback);      
+            jquery_ajax(ACTION_URL.user_list,"post",this.search_param,true,this.list_callback);      
         }, 
         del_record(id){            
             if(confirm("确定要删除此记录吗？")){
-                jquery_ajax(ACTION_URL.positions_delete,"post",id,true,()=>{
+                jquery_ajax(ACTION_URL.user_delete,"post",id,true,()=>{
                     alert("操作成功");
                     location.href = location.href;
                 }); 
@@ -70,18 +71,18 @@ var vue_instance = new Vue({
                 alert("标‘*’字段必须填写");
                 return; 
             }                                    
-            jquery_ajax(ACTION_URL.positions_modify,"post",this.form_data,true,(json_result)=>{                
+            jquery_ajax(ACTION_URL.user_modify,"post",this.form_data,true,(json_result)=>{                
                 console.log(json_result);
                 alert("操作成功");
                 if(this.form_data.id > 0){
-                    location.href="/production/department/level.html?current_page="+this.search_param.page;
+                    location.href="/production/department/account.html?current_page="+this.search_param.page;
                 }else{
-                    location.href="/production/department/level.html";
+                   // location.href="/production/department/account.html";
                 }
             });                    
         },        
         load_edit_data(){ //拉取修改页的数据            
-            jquery_ajax(ACTION_URL.positions_getPositions,"post",this.form_data.id,false,(json_result)=>{
+            jquery_ajax(ACTION_URL.user_detail,"post",this.form_data.id,false,(json_result)=>{
                 this.form_data = json_result.data; //赋值                               
             });                    
         }
@@ -96,9 +97,14 @@ var vue_instance = new Vue({
         //拉取职位列表          
         jquery_ajax_obj({"url":ACTION_URL.positions_list,"post_data":{page:1,"rows":per_page_cnt,"name":""},
             "callback_func":(e)=>{
-                this.position_list = e.data;            
+                this.position_list = e.data.records;            
             },
         });  
+        jquery_ajax_obj({"url":ACTION_URL.departments_list,"post_data":{page:1,"rows":per_page_cnt,"name":""},
+            "callback_func":(e)=>{
+                this.departments_list = e.data.records;            
+            },
+        }); 
         this.load_list();            
     },
     mounted() {              

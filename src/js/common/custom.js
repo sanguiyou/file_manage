@@ -19,28 +19,34 @@ function parseURL(url) {
     return parseResult;
 }
 
-var remote_host = "http://39.105.146.145:8081";
+var remote_host = "http://39.106.160.14:8080";
 //var remote_host = "http://192.168.1.102:8081";
 var ACTION_URL ={
     "city_list":remote_host+"/cities/getlistDic",   //市列表
     "province_list":remote_host+"/provinces/getlistDic",  //省列表
     "area_list":remote_host+"/areas/getlistDic",  //区列表
     "login":remote_host+"/login",  //登录验证    
-    "user_list":remote_host+"/user/userList", //用户列表
-    "user_list_page":remote_host+"/user/listPage", //用户带翻页  
-    "user_detail":remote_host+"/user/getUsers", //用户详情
-    "user_modify":remote_host+"/user/modify", //用户修改
-    "user_delete":remote_host+"/user/deleteLogic", //用户删除    
-    "positions_list":remote_host+"/positions/listTree", //职位列表        
-    "positions_modify":remote_host+"/positions/modify", //职位修改
-    "positions_delete":remote_host+"/positions/delete", //职位删除
-    "positions_getPositions":remote_host+"/positions/getPositions", //职位    
-    "departments_list":remote_host+"/departments/listPage", //部门列表带翻页        
-    "departments_list_tree":remote_host+"/departments/listTree", //部门列表        
-    "departments_modify":remote_host+"/departments/modify", //部门修改
-    "departments_delete":remote_host+"/departments/delete", //部门删除
-    "departments_get_dep_users":remote_host+"/departments/getDeptUsers", //部门下的人        
-    "resource":remote_host+"/api/resource",         
+    "file_levels_delete":remote_host+"/file_levels/delete", 
+    "file_levels_detail":remote_host+"/file_levels/detail",  
+    "file_levels_list":remote_host+"/file_levels/list", 
+    "file_levels_modify":remote_host+"/file_levels/modify", 
+    "user_list":remote_host+"/users/list",    
+    "user_detail":remote_host+"/users/detail",       
+    "user_modify":remote_host+"/users/modify", 
+    "user_delete":remote_host+"/users/delete",  
+    "positions_delete":remote_host+"/positions/delete",   
+    "positions_list":remote_host+"/positions/list",    
+    "positions_detail":remote_host+"/positions/detail",       
+    "positions_modify":remote_host+"/positions/modify",   
+    "departments_delete":remote_host+"/departments/delete",   
+    "departments_list":remote_host+"/departments/list",    
+    "departments_detail":remote_host+"/departments/detail",       
+    "departments_modify":remote_host+"/departments/modify",  
+    "files_delete":remote_host+"/files/delete",   
+    "files_list":remote_host+"/files/list",    
+    "files_detail":remote_host+"/files/detail",       
+    "files_modify":remote_host+"/files/add_folder",
+    "file_auths_list":remote_host+"/file_auths/list ", 
     "company_structure":remote_host+"/departments/getCompanyStructures", 
 };
 
@@ -301,9 +307,9 @@ if (typeof NProgress != 'undefined') {
 window.getToken = function() {    
     var userInfo = localStorage.getItem("_USER");                            
     userInfo = JSON.parse(userInfo);    
-    this.console.log(userInfo.user.token);
-    if(userInfo.user.token != undefined){        
-        return userInfo.user.token;
+    this.console.log(userInfo.token);
+    if(userInfo.token != undefined){        
+        return userInfo.token;
     }
     return null;
 }

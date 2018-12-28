@@ -130,10 +130,10 @@
                             </thead>
                             <tbody>
                             <tr v-for="obj in list">
-                                <td v-hmtl="obj.id"></td>
-                                <td v-hmtl="obj.name">Otto</td>
-                                <td v-hmtl="obj.department_id">@mdo</td>
-                                <td v-hmtl="obj.note"></td>
+                                <td v-html="obj.id"></td>
+                                <td v-html="obj.name"></td>
+                                <td v-html="obj.departmentName"></td>
+                                <td v-html="obj.note"></td>
                                 <td>
                                     <button class="btn btn-warning" :data-id="obj.id" data-toggle="modal" data-target="#myModal">修改</button>
                                     <button class="btn btn-danger" @click="del_record(obj.id)">删除</button>                                    
@@ -167,7 +167,7 @@
                                         <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
                                             <p >所属部门</p>
                                             <select v-model="form_data.department_id">
-                                                <option v-for="position in position_list" :value="position.id">{{position.name}}</option>
+                                                <option v-for="department_obj in departments_list" :value="department_obj.id">{{department_obj.name}}</option>
                                             </select>
                                         </div>
                                         <div style="margin-top:10px;" class="row">

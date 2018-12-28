@@ -100,7 +100,7 @@
                             <tbody>
                             <tr v-for="list_value in list">
                                 <td v-html="list_value.name"></td>
-                                <td v-html="list_value.id"></td>
+                                <td v-html="list_value.note"></td>
                                 <td v-html="list_value.name"></td>
                                 <td v-html="list_value.name"></td>
                                 <td>
@@ -142,14 +142,14 @@
                                                 </div> 
                                             <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px">
                                                 <p >授权人1</p>
-                                                <select v-model="form_data.auth_id2">
-                                                    <option v-for="position in position_list" :value="position.id">{{position.name}}</option>
+                                                <select v-model="form_data.auth_id1">
+                                                    <option v-for="user_obj in user_list" :value="user_obj.id">{{user_obj.nickname}}</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px"> 
                                                 <p >授权人2</p>
                                                 <select v-model="form_data.auth_id2">
-                                                    <option v-for="position in position_list" :value="position.id">{{position.name}}</option>
+                                                    <option v-for="user_obj in user_list" :value="user_obj.id">{{user_obj.nickname}}</option>
                                                 </select>
                                             </div>
                                         </div>
