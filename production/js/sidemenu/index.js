@@ -76,9 +76,9 @@
     $("#copy_btn").click(function(){            
         input.value = $("#secret_text").text(); 
         input.select(); // 选中文本
-        document.execCommand("copy"); // 执行浏览器复制命令
+        document.execCommand("copy"); // 执行浏览器复制命令        
         alert("复制成功");                    
-    });
+    });   
     $("#update_pwd").click(function(){            
         var new_password = $("#new_password").val(); 
         var old_password = $("#old_password").val(); 
