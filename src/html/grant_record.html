@@ -101,7 +101,7 @@
                                 <td v-html="list_value.id"></td>
                                 <td v-html="list_value.file_name"></td>   
                                 <td v-html="list_value.id"></td>
-                                <td v-html="list_value.request_at"></td>  
+                                <td>{{list_value.request_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>  
                                 <td v-html="list_value.user_id"></td>
                                 <td v-html="list_value.id"></td>   
                                 <td v-html="list_value.name"></td>

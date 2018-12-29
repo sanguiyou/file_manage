@@ -96,7 +96,7 @@
                             <tr v-for="list_value in list">
                                 <td v-html="list_value.name"></td>
                                 <td v-html="list_value.size"></td>   
-                                <td v-html="list_value.update_at"></td>
+                                <td v-html="">{{list_value.update_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>
                                 <td v-html="list_value.fileLevelName"></td>                              
                                 <td>                                    
                                     <button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#myModal">申请</button>                                      

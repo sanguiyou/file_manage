@@ -99,10 +99,10 @@
                             </thead>
                             <tbody>
                             <tr v-for="list_value in list">
-                                <td v-html="list_value.name"></td>
                                 <td v-html="list_value.id"></td>
                                 <td v-html="list_value.name"></td>
-                                <td v-html="list_value.name"></td>
+                                <td v-html="list_value.number"></td>
+                                <td v-html="list_value.note"></td>
                                 <td>
                                     <button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#myModal">修改</button>
                                     <button class="btn btn-danger" @click="del_record(list_value.id)">删除</button>                                    

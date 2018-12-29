@@ -98,13 +98,13 @@
                             </thead>
                             <tbody>
                             <tr v-for="list_value in list">
-                                <td v-html="list_value.name"></td>
-                                <td v-html="list_value.id"></td>   
-                                <td v-html="list_value.name"></td>
+                                <td v-html="list_value.id"></td>
+                                <td v-html="list_value.file_name"></td>   
+                                <td>{{list_value.request_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>
                                 <td v-html="list_value.id"></td>  
                                 <td v-html="list_value.name"></td>
                                 <td v-html="list_value.id"></td>   
-                                <td v-html="list_value.name"></td>
+                                <td v-html="list_value.nickname"></td>
                                 <td v-html="list_value.id"></td>                              
                                 <td>
                                     <button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#myModal">通过</button>                                                                   

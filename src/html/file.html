@@ -162,7 +162,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px">
                                                 <p >级别</p>
                                                 <select v-model="form_data.file_level_id">
-                                                    <option v-for="position in position_list" :value="position.id">{{position.name}}</option>
+                                                    <option v-for="level_obj in level_list" :value="level_obj.id">{{level_obj.name}}</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px"> 

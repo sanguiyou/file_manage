@@ -62,6 +62,17 @@ var vue_instance = new Vue({
     },
     mounted() {              
             
-    },
+    },    
+    filters: {
+        format_date: function (value,formatStr) {              
+            if(!isNaN(parseInt(value) && value != "" && value != undefined)){
+                //return tools.formatDate(parseInt(value));          
+                //YYYY-MM-DD HH:mm:ss  
+                return moment(parseInt(value)).format(formatStr);    
+            }else{
+                return value;
+            }                                
+        }
+    }
 })
 

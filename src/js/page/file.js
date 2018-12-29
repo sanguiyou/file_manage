@@ -4,7 +4,7 @@ var vue_instance = new Vue({
         list: [],
         search_param:{page:1,"rows":per_page_cnt,"name":""},        
         totalPages: 0,
-        position_list:[],    
+        level_list:[],    
         form_data:{},    
         title:"",
         jquery_validate_obj:{},
@@ -102,11 +102,10 @@ var vue_instance = new Vue({
         console.log(page_param["current_page"]);
         if(page_param["current_page"] != undefined){
             this.search_param.page = page_param["current_page"];
-        }
-        //拉取职位列表          
-        jquery_ajax_obj({"url":ACTION_URL.positions_list,"post_data":{page:1,"rows":per_page_cnt,"name":""},
+        }        
+        jquery_ajax_obj({"url":ACTION_URL.file_levels_list,"post_data":{page:1,"rows":3000},
             "callback_func":(e)=>{
-                this.position_list = e.data;            
+                this.level_list = e.data.records;            
             },
         });  
         this.load_list();            
