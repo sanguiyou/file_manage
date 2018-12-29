@@ -2,10 +2,11 @@ var vue_instance = new Vue({
     el: '#app',
     data: {
         list: [],
-        search_param:{page:1,"rows":per_page_cnt,"name":""},        
+        search_param:{page:1,"rows":per_page_cnt},        
         totalPages: 0,
         position_list:[],    
-        form_data:{},    
+        form_data:{},   
+        list_current_key:0, 
         title:"",
         jquery_validate_obj:{},
         order_by:true,
@@ -84,6 +85,12 @@ var vue_instance = new Vue({
             jquery_ajax(ACTION_URL.positions_getPositions,"post",this.form_data.id,false,(json_result)=>{
                 this.form_data = json_result.data; //赋值                               
             });                    
+        },
+        paste_secret_key:function(){
+            var userInfo = localStorage.getItem("_USER");                            
+            userInfo = JSON.parse(userInfo);     
+            this.$set(this.form_data,"secret_key",userInfo.secret_key);            
+            //this.form_data.secret_key = userInfo.secret_key;            
         }       
     },
     created: function () {
@@ -97,23 +104,13 @@ var vue_instance = new Vue({
     mounted() {              
         $('#myModal').on('show.bs.modal',(e)=> {                        
             var target = e.relatedTarget;
-            this.form_data.id = target.getAttribute("data-id");  
-            if(this.form_data.id > 0){
-                this.load_edit_data();       
-                this.title = "修改文件";
-            }else{
-                this.form_data = {"id":null};
-                this.title = "新增文件";
-            }               
-        });
-        this.jquery_validate_obj = $("#form_lable").validate({
-			rules: {
-                name: "required",		                
-			},
-			messages: {
-                name: "*文件名必须填写!",				                
-			}
+            this.list_current_key = target.getAttribute("data-id");                       
         });         
+                                              
+        //$("#paste_btn").click(()=>{  
+                 
+            //$("#secret_key_paste").val(userInfo.secret_key);
+        //});                                    
     },
     filters: {
         format_date: function (value,formatStr) {              

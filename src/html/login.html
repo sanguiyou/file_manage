@@ -134,7 +134,8 @@
                 //var login_param = {"userName":"13600000000","passWord":"123"};
                 var login_param = {"userName":$("#loginName").val(),"passWord":$("#password").val()};
                 jquery_ajax_notoken(ACTION_URL.login,"post",login_param,(json)=>{
-                    if(json.result == "00000000"){                
+                    if(json.result == "00000000"){        
+                        json.data.secret_key = "2dfadfdasfe3AAA";        
                         localStorage.setItem("_USER",JSON.stringify(json.data));                           
                         alert("login successfully");
                         //window.location.href='/production/department/file_center.html';

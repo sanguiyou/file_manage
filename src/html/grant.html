@@ -97,7 +97,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="list_value in list">
+                            <tr v-for="(list_value,key) in list">
                                 <td v-html="list_value.id"></td>
                                 <td v-html="list_value.file_name"></td>   
                                 <td>{{list_value.request_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>
@@ -107,7 +107,7 @@
                                 <td v-html="list_value.nickname"></td>
                                 <td v-html="list_value.id"></td>                              
                                 <td>
-                                    <button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#myModal">通过</button>                                                                   
+                                    <button class="btn btn-warning" :data-id="key" data-toggle="modal" data-target="#myModal">通过</button>                                                                   
                                 </td>
                             </tr>                            
                             </tbody>
@@ -135,7 +135,7 @@
                                                     <p >文件名:</p>                                                    
                                                 </div>
                                                 <div class="col-md-10 col-sm-10 col-xs-10">
-                                                    <p >KBS系列电气设计原理与应用1.PDF</p>                                                    
+                                                    <p >{{list[list_current_key].file_name}}</p>                                                    
                                                 </div>
                                             </div>   
                                             <br> 
@@ -144,7 +144,10 @@
                                                     <p >密匙:</p>                                                    
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                                    <p ><input type="text" name="name" v-model="form_data.aname"/></p>                                                    
+                                                    <p ><input type="text" name="name" id="secret_key_paste" v-model="form_data.secret_key"/></p>                                                    
+                                                </div>
+                                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                                        <button type="button" class="btn btn-default" id="paste_btn" @click="paste_secret_key()">粘贴</button>
                                                 </div>
                                             </div>                                                                                   
                                         </div>
@@ -176,6 +179,7 @@
 <!--sidemenu-->
 <script src="./../js/sidemenu/index.js"></script>
 <script src="../../vendors/vue/vue.js"></script>
+<script src="../../vendors/paste.js"></script>
 <!-- Bootstrap -->
 <script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
@@ -194,7 +198,6 @@
 <!-- Skycons -->
 <script src="../../vendors/skycons/skycons.js"></script>
 <script src="../../vendors/art-template-master/lib/template-web.js"></script>
-<script src="../../vendors/clipboard.min.js"></script>
 <!-- bootstrap-daterangepicker -->
 <script src="../../vendors/moment/min/moment.min.js"></script>
 <script src="../../vendors/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>

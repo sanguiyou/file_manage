@@ -307,11 +307,10 @@ if (typeof NProgress != 'undefined') {
     });
 }
 
-window.getToken = function() {    
+window.getToken = function() {        
     var userInfo = localStorage.getItem("_USER");                            
     userInfo = JSON.parse(userInfo);    
-    this.console.log(userInfo.token);
-    userInfo.secret_key = "2dfadfdasfe3";
+    this.console.log(userInfo.token);    
     if(userInfo.secret_key != undefined){
         $("#secret_text").text(userInfo.secret_key);
         $("#secret_key_span").show();
@@ -410,4 +409,29 @@ function jquery_ajax_obj(obj){
         }              
     }    
     $.ajax(ajax_obj);
+}
+function jquery_ajax_notoken(url,post_or_get,post_data,callback_func){      
+    $.ajax({
+        url: url,
+        type: post_or_get,
+        dataType: "json",        
+        data: JSON.stringify(post_data),
+        async:true,
+        contentType: "application/json;charset=UTF-8",
+        success: function(e) {                        
+            if(e.result == 90000001){//判断登录过期
+                console.log(e.msg);
+                //location.href ="/login.html";
+            }
+            callback_func(e);            
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {    
+            console.log(XMLHttpRequest.status);                    
+            alert(XMLHttpRequest.readyState+url);
+            //alert(textStatus);
+        },
+        complete: function(XMLHttpRequest, textStatus) {
+            this; // 调用本次AJAX请求时传递的options参数
+        }
+    });
 }
