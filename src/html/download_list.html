@@ -93,17 +93,23 @@
                             <tbody>
                             <tr v-for="list_value in list">
                                 <td v-html="list_value.id"></td>   
-                                <td v-html="list_value.name"></td>
-                                <td v-html="list_value.id"></td>   
-                                <td v-html="list_value.name"></td>
-                                <td v-html="list_value.id"></td>                              
-                                <td v-html="list_value.id"></td>  
+                                <td v-html="list_value.file_name"></td>
+                                <td v-html="list_value.size"></td>   
+                                <td>{{ list_value.request_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>
+                                <td >{{ list_value.end_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>                              
+                                <td v-html="list_value.time" class="left_time"></td>  
                                 <td>
-                                    王长伟 <button class="btn btn-info btn-xs">未确认</button>   
-                                    xie长伟 <button class="btn btn-success btn-xs">已确认</button>
+                                    {{list_value.auth_name1}} <button class="btn  btn-xs" v-if="list_value.auth_status1==0">未确认</button><button class="btn btn-info btn-xs" v-if="list_value.auth_status1==1">已确认</button>   
+                                    {{list_value.auth_name2}}<button class="btn  btn-xs" v-if="list_value.auth_status2==0">未确认</button><button class="btn btn-info btn-xs" v-if="list_value.auth_status2==1">已确认</button>   
                                 </td>  
-                                <td>
-                                    <button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#myModal">下载</button>                                               
+                                <td v-if="list_value.status=='1'">
+                                    <a :href="download_url+list_value.file_id+'/'+list_value.file_request_id+'?Authorization='+token"><button class="btn btn-warning" :data-id="list_value.id">下载</button></a>
+                                </td>
+                                <td v-if="list_value.status=='0'">
+                                    等待审核
+                                </td>
+                                <td v-if="list_value.status=='2'">
+                                    已过期
                                 </td>
                             </tr>                            
                             </tbody>

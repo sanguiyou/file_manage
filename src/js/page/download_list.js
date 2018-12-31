@@ -2,17 +2,19 @@ var vue_instance = new Vue({
     el: '#app',
     data: {
         list: [],
-        search_param:{page:1,"rows":per_page_cnt,"name":""},        
+        search_param:{page:1,"rows":per_page_cnt},        
         totalPages: 0,
         position_list:[],    
         form_data:{},    
         title:"",
         jquery_validate_obj:{},
         order_by:true,
+        download_url:ACTION_URL.file_download,
+        token:getToken()
     },
     methods: {
         list_callback: function (ajax_json) {              
-            this.list = ajax_json.data;
+            this.list = ajax_json.data.records;
             this.totalPages = ajax_json.data.pages;      
                         
             $('#pageLimit1').bootstrapPaginator({
@@ -34,7 +36,7 @@ var vue_instance = new Vue({
                 onPageClicked: (event, originalEvent, type, page)=> {
                     this.search_param.page = page;
                     console.log("clicked page", page);
-                    jquery_ajax(ACTION_URL.positions_list,"post",this.search_param,true,this.list_callback);  
+                    jquery_ajax(ACTION_URL.file_dowloads_list,"post",this.search_param,true,this.list_callback);  
                 }
             }); 
                               
@@ -54,7 +56,7 @@ var vue_instance = new Vue({
         },
         load_list:function(){                 
             console.log(this.search_param);            
-            jquery_ajax(ACTION_URL.positions_list,"post",this.search_param,true,this.list_callback);      
+            jquery_ajax(ACTION_URL.file_dowloads_list,"post",this.search_param,true,this.list_callback);      
         }, 
         del_record(id){            
             if(confirm("确定要删除此记录吗？")){
@@ -92,27 +94,23 @@ var vue_instance = new Vue({
         console.log(page_param["current_page"]);
         if(page_param["current_page"] != undefined){
             this.search_param.page = page_param["current_page"];
-        }
-        //拉取职位列表          
-        jquery_ajax_obj({"url":ACTION_URL.positions_list,"post_data":{page:1,"rows":per_page_cnt,"name":""},
-            "callback_func":(e)=>{
-                this.position_list = e.data;            
-            },
-        });  
+        }       
         this.load_list();            
     },
     mounted() {              
-        $('#myModal').on('show.bs.modal',(e)=> {                        
-            var target = e.relatedTarget;
-            this.form_data.id = target.getAttribute("data-id");  
-            if(this.form_data.id > 0){
-                this.load_edit_data();       
-                this.title = "修改文件";
-            }else{
-                this.form_data = {"id":null};
-                this.title = "新增文件";
-            }               
+        $('#myModal').on('show.bs.modal',(e)=> {      
+            //location.href=ACTION_URL.file_download+id+"/null"+"?Authorization="+getToken();                  
+            //var target = e.relatedTarget;
+            //this.form_data.id = target.getAttribute("data-id");                        
         });
+        setInterval(function(){
+           // $(".left_time").text(parseInt($(".left_time").text())-1);            
+            // var minites = (time%3600/60).toFixed(0);
+            // var second = (minites%60).toFixed(0); 
+            // var time_str = parseInt($("#left_time").text())/3600+":"+minites+":"+second;
+            // $("#left_time").text(time_str);
+            // time = time-1;
+        },1000);    
         this.jquery_validate_obj = $("#form_lable").validate({
 			rules: {
                 name: "required",		                
@@ -121,6 +119,17 @@ var vue_instance = new Vue({
                 name: "*文件名必须填写!",				                
 			}
         }); 
-    },
+    },    
+    filters: {
+        format_date: function (value,formatStr) {              
+            if(!isNaN(parseInt(value) && value != "" && value != undefined)){
+                //return tools.formatDate(parseInt(value));          
+                //YYYY-MM-DD HH:mm:ss  
+                return moment(parseInt(value)).format(formatStr);    
+            }else{
+                return value;
+            }                                
+        }
+    }
 })
 

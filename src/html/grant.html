@@ -99,15 +99,18 @@
                             <tbody>
                             <tr v-for="(list_value,key) in list">
                                 <td v-html="list_value.id"></td>
-                                <td v-html="list_value.file_name"></td>   
-                                <td>{{list_value.request_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>
+                                <td v-html="list_value.file_name"></td>                                   
                                 <td v-html="list_value.id"></td>  
-                                <td v-html="list_value.name"></td>
-                                <td v-html="list_value.id"></td>   
+                                <td>{{list_value.request_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>
+                                <td v-html="list_value.time+'秒'"></td>
+                                <td id="left_time">400</td>   
                                 <td v-html="list_value.nickname"></td>
                                 <td v-html="list_value.id"></td>                              
-                                <td>
-                                    <button class="btn btn-warning" :data-id="key" data-toggle="modal" data-target="#myModal">通过</button>                                                                   
+                                <td v-if="list_value.status==0">
+                                    <button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#auth_confirm">通过</button>                                                                   
+                                </td>
+                                <td v-if="list_value.status==1">
+                                    已通过
                                 </td>
                             </tr>                            
                             </tbody>
@@ -119,7 +122,7 @@
                 </div>
             </div>
             <!-- 模态框（Modal） -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="auth_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">

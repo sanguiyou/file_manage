@@ -2,7 +2,7 @@ var vue_instance = new Vue({
     el: '#app',
     data: {
         list: [],
-        search_param:{page:1,"rows":per_page_cnt},        
+        search_param:{page:1,"rows":per_page_cnt,"type":1},        
         totalPages: 0,
         position_list:[],    
         form_data:{},   
@@ -70,15 +70,11 @@ var vue_instance = new Vue({
             if(!$("#form_lable").valid()){
                 alert("标‘*’字段必须填写");
                 return; 
-            }                                    
-            jquery_ajax(ACTION_URL.positions_modify,"post",this.form_data,true,(json_result)=>{                
+            }                                
+            this.form_data.auth_id = 48;    
+            jquery_ajax(ACTION_URL.file_auth_auth,"post",this.form_data,true,(json_result)=>{                
                 console.log(json_result);
-                alert("操作成功");
-                if(this.form_data.id > 0){
-                    location.href="/production/department/level.html?current_page="+this.search_param.page;
-                }else{
-                    location.href="/production/department/level.html";
-                }
+                alert("操作成功");                
             });                    
         },        
         load_edit_data(){ //拉取修改页的数据            
@@ -102,15 +98,26 @@ var vue_instance = new Vue({
         this.load_list();            
     },
     mounted() {              
-        $('#myModal').on('show.bs.modal',(e)=> {                        
+        $('#auth_confirm').on('show.bs.modal',(e)=> {                                    
             var target = e.relatedTarget;
-            this.list_current_key = target.getAttribute("data-id");                       
+            this.list_current_key = target.getAttribute("data-id");          
+            alert(this.list[list_current_key].id);                  
+            this.$set(this.form_data,"auth_id",this.list[list_current_key].id);                
         });         
                                               
         //$("#paste_btn").click(()=>{  
                  
             //$("#secret_key_paste").val(userInfo.secret_key);
-        //});                                    
+        //});  
+        var time = 4000;   
+        setInterval(function(){
+            $("#left_time").text(parseInt($("#left_time").text())-1);            
+            // var minites = (time%3600/60).toFixed(0);
+            // var second = (minites%60).toFixed(0); 
+            // var time_str = parseInt($("#left_time").text())/3600+":"+minites+":"+second;
+            // $("#left_time").text(time_str);
+            // time = time-1;
+        },1000);                               
     },
     filters: {
         format_date: function (value,formatStr) {              

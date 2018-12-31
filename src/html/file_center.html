@@ -93,13 +93,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="list_value in list">
+                            <tr v-for="(list_value,key) in list">
                                 <td v-html="list_value.name"></td>
                                 <td v-html="list_value.size"></td>   
                                 <td v-html="">{{list_value.update_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>
                                 <td v-html="list_value.fileLevelName"></td>                              
-                                <td>                                    
-                                    <button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#myModal">申请</button>                                      
+                                <td v-if="list_value.type == 1 && (list_value.auth_id1 != undefined ||  list_value.auth_id12 != undefined)">                                    
+                                    <button class="btn btn-warning" :data-id="key" data-toggle="modal" data-target="#myModal">申请</button>                                      
+                                </td>
+                                <td v-if="list_value.type == 1 && list_value.auth_id1 == undefined &&  list_value.auth_id12 == undefined">                                    
+                                   <button class="btn btn-warning" :data-id="list_value.id" @click="down_load_file(list_value.id)">下载</button>
+                                </td>
+                                <td v-if="list_value.type == 0">                                    
+                                    <a :href="'/production/department/file_center.html?dir_id='+list_value.id"><button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#myModal">打开</button></a>                                      
                                 </td>
                             </tr>                            
                             </tbody>
@@ -126,8 +132,8 @@
                                     <div style="margin-top:10px;margin-left: 40px" class="row">                                              
                                         <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;font-size: 14px;color:blue;">                                            
                                                 <template v-for="user_info_obj in grant_user_list_info">
-                                                    <p><span>王长伟</span>， 微信：<span>32132121</span>，电话：<span>1232131321</span>，</p>
-                                                    <p>邮箱：<span>3444@qq.com</span> </p>                                                    
+                                                    <p><span v-html="user_info_obj.nickname"></span>， 微信：<span v-html="user_info_obj.wechat">32132121</span>，电话：<span v-html="user_info_obj.phone">1232131321</span>，</p>
+                                                    <p>邮箱：<span v-html="user_info_obj.email">3444@qq.com</span> </p>                                                    
                                                 </template>                                            
                                         </div>                                                                               
                                     </div>    

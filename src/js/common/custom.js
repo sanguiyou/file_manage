@@ -20,7 +20,8 @@ function parseURL(url) {
 }
 
 var remote_host = "http://39.106.160.14:8080";
-//var remote_host = "http://192.168.1.102:8081";
+var remote_host = "http://192.168.1.102:8080";
+//var remote_host = "http://192.168.2.179:8080";
 var ACTION_URL ={
     "city_list":remote_host+"/cities/getlistDic",   //市列表
     "province_list":remote_host+"/provinces/getlistDic",  //省列表
@@ -47,9 +48,16 @@ var ACTION_URL ={
     "files_delete":remote_host+"/files/delete",   
     "files_list":remote_host+"/files/list",    
     "files_detail":remote_host+"/files/detail",       
-    "files_modify":remote_host+"/files/add_folder",
+    "files_add_folder":remote_host+"/files/add_folder",
+    "files_rename_folder":remote_host+"/files/rename_folder",
     "file_auths_list":remote_host+"/file_auths/list ", 
-    "company_structure":remote_host+"/departments/getCompanyStructures", 
+    "file_upload":remote_host+"/files/upload", 
+    "file_auth_info":remote_host+"/files/auth_info",
+    "file_auth_add":remote_host+"/file_auths/add", 
+    "file_auth_auth":remote_host+"/file_auths/auth", 
+    "file_download":remote_host+"/files/download/", 
+    "file_dowloads_list":remote_host+"/file_downloads/list", 
+    "folder_structures":remote_host+"/files/folder_structure", 
 
 };
 
@@ -329,7 +337,7 @@ if(userInfo) {
     $(".profile_pic img").addClass("show").attr("src", userInfo.avatar || "/production/images/missing_avatar.png");
 }
 
-function jquery_ajax(url,post_or_get,post_data,is_json,callback_func){            
+function jquery_ajax(url,post_or_get,post_data,is_json,callback_func){             
     var ajax_obj = {
         url: url,
         type: post_or_get,

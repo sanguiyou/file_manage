@@ -77,7 +77,7 @@ var vue_instance = new Vue({
                 if(this.form_data.id > 0){
                     location.href="/production/department/account.html?current_page="+this.search_param.page;
                 }else{
-                   // location.href="/production/department/account.html";
+                    location.href="/production/department/account.html";
                 }
             });                    
         },        

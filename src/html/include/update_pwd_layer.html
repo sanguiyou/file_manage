@@ -17,17 +17,17 @@
                             <br>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <p >当前密码：</p>
-                                <input type="text" name="name" id="old_password" v-model="form_data.pwd"/>
+                                <input type="text" name="name" id="old_password"/>
                             </div>
                             <br>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <p >新密码：</p>
-                                <input type="text" name="name" id="new_password" v-model="form_data.name"/>
+                                <input type="text" name="name" id="new_password"/>
                             </div>
                             <br>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <p >确认新密码：</p>
-                                <input type="text" name="name" id="new_password_confirm" v-model="form_data.name"/>
+                                <input type="text" name="name" id="new_password_confirm"/>
                             </div>
                         </div>                                    
                     </div>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" @click="update_pwd()">确定</button>
+                    <button type="button" class="btn btn-primary" id="update_pwd_confirm">确定</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

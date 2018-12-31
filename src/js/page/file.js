@@ -2,7 +2,7 @@ var vue_instance = new Vue({
     el: '#app',
     data: {
         list: [],
-        search_param:{page:1,"rows":per_page_cnt,"name":""},        
+        search_param:{page:1,"rows":per_page_cnt,"type":"1"},        
         totalPages: 0,
         level_list:[],    
         form_data:{},    
@@ -14,7 +14,7 @@ var vue_instance = new Vue({
     },
     methods: {
         list_callback: function (ajax_json) {              
-            this.list = ajax_json.data;
+            this.list = ajax_json.data.records;
             this.totalPages = ajax_json.data.pages;      
                         
             $('#pageLimit1').bootstrapPaginator({
@@ -36,7 +36,7 @@ var vue_instance = new Vue({
                 onPageClicked: (event, originalEvent, type, page)=> {
                     this.search_param.page = page;
                     console.log("clicked page", page);
-                    jquery_ajax(ACTION_URL.positions_list,"post",this.search_param,true,this.list_callback);  
+                    jquery_ajax(ACTION_URL.files_list,"post",this.search_param,true,this.list_callback);  
                 }
             }); 
                               
@@ -56,7 +56,7 @@ var vue_instance = new Vue({
         },
         load_list:function(){                 
             console.log(this.search_param);            
-            jquery_ajax(ACTION_URL.positions_list,"post",this.search_param,true,this.list_callback);      
+            jquery_ajax(ACTION_URL.files_list,"post",this.search_param,true,this.list_callback);      
         }, 
         del_record(id){            
             if(confirm("确定要删除此记录吗？")){
@@ -71,16 +71,34 @@ var vue_instance = new Vue({
             if(!$("#form_lable").valid()){
                 alert("标‘*’字段必须填写");
                 return; 
-            }                                    
-            jquery_ajax(ACTION_URL.positions_modify,"post",this.form_data,true,(json_result)=>{                
-                console.log(json_result);
-                alert("操作成功");
-                if(this.form_data.id > 0){
-                    location.href="/production/department/level.html?current_page="+this.search_param.page;
-                }else{
-                    location.href="/production/department/level.html";
+            }                 
+            $.ajax({
+                type: 'post',
+                url :ACTION_URL.file_upload,
+                headers: {
+                    "Authorization": ""+getToken()
+                },
+                data:$("#form_lable").serialize(),
+                xhrFields : {
+                        withCredentials : true
+                },			
+                success: function(data) {
+                    var dd = 0;
+                },
+                error : function (){
+                    window.location.href=longinUrl;
                 }
-            });                    
+            });
+            //document.getElementById('form_lable').submit();                               
+            // jquery_ajax(ACTION_URL.positions_modify,"post",this.form_data,true,(json_result)=>{                
+            //     console.log(json_result);
+            //     alert("操作成功");
+            //     if(this.form_data.id > 0){
+            //         location.href="/production/department/level.html?current_page="+this.search_param.page;
+            //     }else{
+            //         location.href="/production/department/level.html";
+            //     }
+            // });                    
         },        
         load_edit_data(){ //拉取修改页的数据            
             jquery_ajax(ACTION_URL.positions_getPositions,"post",this.form_data.id,false,(json_result)=>{
@@ -89,9 +107,10 @@ var vue_instance = new Vue({
         },
         left_tree_on_check(e, treeId, treeNode){            
             var id = treeNode.id;
+            $("#folderId").val(id);
             this.form_data.parent_id = treeNode.id;
             if( treeNode.checked ){                 
-                console.log("checked:"+id);
+                console.log("checked:"+id);                
             }else{
                 console.log("unchecked:"+id);
             }
@@ -110,7 +129,8 @@ var vue_instance = new Vue({
         });  
         this.load_list();            
     },
-    mounted() {              
+    mounted() {   
+        $("#form_lable").attr("action",ACTION_URL.file_upload);           
         $('#myModal').on('show.bs.modal',(e)=> {                        
             var target = e.relatedTarget;
             this.form_data.id = target.getAttribute("data-id");  

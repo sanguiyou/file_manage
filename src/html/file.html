@@ -125,9 +125,9 @@
                             <tbody>
                             <tr v-for="list_value in list">
                                 <td v-html="list_value.name"></td>
-                                <td v-html="list_value.id"></td>   
-                                <td v-html="list_value.name"></td>
-                                <td v-html="list_value.id"></td>                              
+                                <td v-html="list_value.size"></td>   
+                                <td v-html="list_value.update_at"></td>
+                                <td v-html="list_value.fileLevelName"></td>                              
                                 <td>
                                     <button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#myModal">修改</button>
                                     <button class="btn btn-danger" @click="del_record(list_value.id)">删除</button>                                    
@@ -149,29 +149,30 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h4 class="modal-title" id="myModalLabel" v-html="title"></h4>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body">                                
                                 <div style="padding: 5px 30px;">
-                                    <form id="form_lable">
+                                    <form id="form_lable" method="post" action="http://192.168.2.179:8080/\/files/upload">
                                         <div style="margin-top:10px;" class="row">
                                             <div style="margin-top:10px;" class="row">
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <p >* 文件名</p>
-                                                    <input type="file" name="name" v-model="form_data.name"/>
+                                                    <input type="file" name="files"/>
                                                 </div>
                                             </div>    
                                             <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px">
                                                 <p >级别</p>
-                                                <select v-model="form_data.file_level_id">
+                                                <select v-model="form_data.file_level_id" name="levelId">
                                                     <option v-for="level_obj in level_list" :value="level_obj.id">{{level_obj.name}}</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px"> 
                                                 <p >目录</p>                                                                                                
                                                 <div id="left_tree" class="ztree" style="max-height: 400px;overflow: auto"></div>
-                                            </div>                                          
+                                            </div>            
+                                            <input type="hidden" id="folderId" name="folderId" value="0" >
                                         </div>
                                     </form>
-                                </div>
+                                </div>                                
                                 <br/>
                                  
                             </div>
