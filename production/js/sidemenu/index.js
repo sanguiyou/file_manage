@@ -13,15 +13,15 @@
             href: "/production/department/download_list.html"
         },                         
     ];
-    var secret_key = "123";
+    //var secret_key = "123";
     var userInfo = localStorage.getItem("_USER");                            
     userInfo = JSON.parse(userInfo);    
-    userInfo.secret_key = "2dfadfdasfe3";    
+    //userInfo.secret_key = "2dfadfdasfe3";    
     if(userInfo.secret_key != undefined && userInfo.secret_key != ""){ //管理员
         menuList.push({text: "审批列表",href: '/production/department/grant.html'});
         menuList.push({text: "授权记录",href: '/production/department/grant_record.html'});
     }    
-    userInfo.type = 1;
+    //userInfo.type = 1;
     if(userInfo.type == 1){ //管理员
         menuList.push({text: "级别管理",href: '/production/department/level.html'});
         menuList.push({text: "部门管理",href: '/production/department/department_new.html'});
@@ -79,7 +79,7 @@
         document.execCommand("copy"); // 执行浏览器复制命令        
         alert("复制成功");                    
     });   
-    $("#update_pwd").click(function(){            
+    $("#update_pwd_confirm").click(function(){            
         var new_password = $("#new_password").val(); 
         var old_password = $("#old_password").val(); 
         var new_password_confirm = $("#new_password_confirm").val();         
