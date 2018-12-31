@@ -77,17 +77,10 @@ var vue_instance = new Vue({
             jquery_ajax(ACTION_URL.files_add_folder,"post",this.form_data,true,(json_result)=>{                
                 console.log(json_result);
                 alert("操作成功");
+                location.href="/production/department/file_category.html?current_page="+this.search_param.page;
                 if(this.form_data.id > 0){
                     //location.href="/production/department/file_category.html?current_page="+this.search_param.page;
                 }
-            });                    
-        },       
-        rename_folder_submit:function () {
-            alert("1223");                        
-            console.log(this.form_data);                                              
-            jquery_ajax(ACTION_URL.files_rename_folder,"post",this.form_data,true,(json_result)=>{                
-                console.log(json_result);
-                alert("操作成功");               
             });                    
         },        
         load_edit_data(){ //拉取修改页的数据            
@@ -187,14 +180,19 @@ var vue_instance = new Vue({
         });   
         $('#rename_folder').on('show.bs.modal',(e)=> {                                  
             var target = e.relatedTarget;            
-            key = target.getAttribute("data-id");                      
-            if(key >= 0){
-                this.form_data.rename = this.list[key].name;
-                //this.$set(this.form_data.rename,"name",this.list[key].name);                 
-                this.form_data.id = this.list[key].id;  
-                this.form_data.dir_id = null;                     
-            }                        
+            var key = target.getAttribute("data-id");               
+            if(key >= 0){                                                
+                $("#rename").val(this.list[key].name);
+                $("#update_category_id").val(this.list[key].id);                                                                  
+            }                       
         });
+        $("#rename_folder_submit").click(function(){
+            jquery_ajax(ACTION_URL.files_rename_folder,"post",{"name":$("#rename").val(),"id":$("#update_category_id").val()},true,(json_result)=>{                               
+                alert("操作成功");               
+                location.href=location.href;
+            });  
+        });
+        
     },
 })
 

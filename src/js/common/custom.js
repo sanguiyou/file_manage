@@ -51,14 +51,14 @@ var ACTION_URL ={
     "files_add_folder":remote_host+"/files/add_folder",
     "files_rename_folder":remote_host+"/files/rename_folder",
     "file_auths_list":remote_host+"/file_auths/list ", 
-    "file_upload":remote_host+"/files/upload", 
+    "file_upload_submit":remote_host+"/files/modify_file", 
     "file_auth_info":remote_host+"/files/auth_info",
     "file_auth_add":remote_host+"/file_auths/add", 
     "file_auth_auth":remote_host+"/file_auths/auth", 
     "file_download":remote_host+"/files/download/", 
     "file_dowloads_list":remote_host+"/file_downloads/list", 
     "folder_structures":remote_host+"/files/folder_structure", 
-
+    "upload_file_url":remote_host+"/files/upfile",     
 };
 
 var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
@@ -320,6 +320,8 @@ window.getToken = function() {
     userInfo = JSON.parse(userInfo);    
     this.console.log(userInfo.token);    
     $("#nickname").text(userInfo.nickname);
+    $("#update_pwd_layer_nick_name").text(userInfo.nickname);
+    $("#update_pwd_layer_phone").text(userInfo.phone);
     if(userInfo.secret_key != undefined){
         $("#secret_text").text(userInfo.secret_key);
         $("#secret_key_span").show();

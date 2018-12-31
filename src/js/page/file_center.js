@@ -55,10 +55,14 @@ var vue_instance = new Vue({
                 }                
             });            
         },
-        load_list:function(){                 
-            console.log(this.search_param);            
+        load_list:function(){                             
+            this.search_param.type = 2;                    
             jquery_ajax(ACTION_URL.files_list,"post",this.search_param,true,this.list_callback);      
         }, 
+        load_list_search:function(){                             
+            this.search_param.type = 1;           
+            jquery_ajax(ACTION_URL.files_list,"post",this.search_param,true,this.list_callback);      
+        },
         del_record(id){            
             if(confirm("确定要删除此记录吗？")){
                 jquery_ajax(ACTION_URL.positions_delete,"post",id,true,()=>{

@@ -125,7 +125,7 @@
                                 <td><a :href="'/production/department/file_category.html?dir_id='+list_value.id" v-html="list_value.name"></a></td>
                                 <td>{{list_value.update_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>                                
                                 <td>
-                                    <button class="btn btn-warning" :data-id="key" data-toggle="modal" data-target="#myModal">修改</button>
+                                    <button class="btn btn-warning" :data-id="key" data-toggle="modal" data-target="#rename_folder">修改</button>
                                     <button class="btn btn-danger" @click="del_record(list_value.id)">删除</button>                                    
                                 </td>
                             </tr>                            
@@ -180,7 +180,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel" v-html="title"></h4>
+                        <h4 class="modal-title" id="myModalLabel">修改目录</h4>
                     </div>
                     <div class="modal-body">
                         <div style="padding: 5px 30px;">
@@ -189,7 +189,8 @@
                                     <div style="margin-top:10px;" class="row">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <p >* 目录名</p>
-                                            <input type="text" name="name" v-model="form_data.name"/>
+                                            <input type="text" name="name" id="rename"/>
+                                            <input type="hidden" name="name" id="update_category_id"/>
                                         </div>
                                     </div>                                                                                  
                                 </div>
@@ -200,7 +201,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-primary" @click="rename_folder_submit()">确定</button>
+                        <button type="button" class="btn btn-primary" id="rename_folder_submit">确定</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
