@@ -74,7 +74,8 @@ var vue_instance = new Vue({
             this.form_data.auth_id = 48;    
             jquery_ajax(ACTION_URL.file_auth_auth,"post",this.form_data,true,(json_result)=>{                
                 console.log(json_result);
-                alert("操作成功");                
+                alert("操作成功");      
+                location.href = location.href;          
             });                    
         },        
         load_edit_data(){ //拉取修改页的数据            

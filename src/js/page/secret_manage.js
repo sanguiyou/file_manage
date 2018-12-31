@@ -2,17 +2,13 @@ var vue_instance = new Vue({
     el: '#app',
     data: {
         list: [],
-        search_param:{page:1,"rows":per_page_cnt,"name":""},        
+        search_param:{page:1,"rows":per_page_cnt,"type":1},        
         totalPages: 0,
-        position_list:[],    
-        form_data:{},    
-        title:"",
-        jquery_validate_obj:{},
         order_by:true,
     },
     methods: {
         list_callback: function (ajax_json) {              
-            this.list = ajax_json.data;
+            this.list = ajax_json.data.records;
             this.totalPages = ajax_json.data.pages;      
                         
             $('#pageLimit1').bootstrapPaginator({
@@ -34,7 +30,7 @@ var vue_instance = new Vue({
                 onPageClicked: (event, originalEvent, type, page)=> {
                     this.search_param.page = page;
                     console.log("clicked page", page);
-                    jquery_ajax(ACTION_URL.positions_list,"post",this.search_param,true,this.list_callback);  
+                    jquery_ajax(ACTION_URL.user_list,"post",this.search_param,true,this.list_callback);  
                 }
             }); 
                               
@@ -54,73 +50,28 @@ var vue_instance = new Vue({
         },
         load_list:function(){                 
             console.log(this.search_param);            
-            jquery_ajax(ACTION_URL.positions_list,"post",this.search_param,true,this.list_callback);      
-        }, 
-        del_record(id){            
-            if(confirm("确定要删除此记录吗？")){
-                jquery_ajax(ACTION_URL.positions_delete,"post",id,true,()=>{
-                    alert("操作成功");
-                    location.href = location.href;
-                }); 
-            }                 
+            jquery_ajax(ACTION_URL.user_list,"post",this.search_param,true,this.list_callback);      
         },
-        submit_form:function () {                        
-            console.log(this.form_data);   
-            if(!$("#form_lable").valid()){
-                alert("标‘*’字段必须填写");
-                return; 
-            }                                    
-            jquery_ajax(ACTION_URL.positions_modify,"post",this.form_data,true,(json_result)=>{                
-                console.log(json_result);
-                alert("操作成功");
-                if(this.form_data.id > 0){
-                    location.href="/production/department/level.html?current_page="+this.search_param.page;
-                }else{
-                    location.href="/production/department/level.html";
-                }
-            });                    
-        },        
-        load_edit_data(){ //拉取修改页的数据            
-            jquery_ajax(ACTION_URL.positions_getPositions,"post",this.form_data.id,false,(json_result)=>{
-                this.form_data = json_result.data; //赋值                               
-            });                    
-        }
-        
+        user_update_secket_key:function(user_id){
+            jquery_ajax(ACTION_URL.user_update_secket_key,"post",user_id,true,(e)=>{
+                var userInfo = localStorage.getItem("_USER");                            
+                userInfo = JSON.parse(userInfo);    
+                userInfo.token = e.data.secret; 
+                localStorage.setItem("_USER",JSON.stringify(userInfo));  
+                alert("更换成功");
+                //location.href = location.href;
+            }); 
+        } 
     },
     created: function () {
         var page_param = parseURL(window.location.href);
         console.log(page_param["current_page"]);
         if(page_param["current_page"] != undefined){
             this.search_param.page = page_param["current_page"];
-        }
-        //拉取职位列表          
-        jquery_ajax_obj({"url":ACTION_URL.positions_list,"post_data":{page:1,"rows":per_page_cnt,"name":""},
-            "callback_func":(e)=>{
-                this.position_list = e.data;            
-            },
-        });  
+        }       
         this.load_list();            
     },
-    mounted() {              
-        $('#myModal').on('show.bs.modal',(e)=> {                        
-            var target = e.relatedTarget;
-            this.form_data.id = target.getAttribute("data-id");  
-            if(this.form_data.id > 0){
-                this.load_edit_data();       
-                this.title = "修改文件";
-            }else{
-                this.form_data = {"id":null};
-                this.title = "新增文件";
-            }               
-        });
-        this.jquery_validate_obj = $("#form_lable").validate({
-			rules: {
-                name: "required",		                
-			},
-			messages: {
-                name: "*文件名必须填写!",				                
-			}
-        }); 
+    mounted() {                        
     },
 })
 

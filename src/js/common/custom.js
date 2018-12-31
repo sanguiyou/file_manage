@@ -319,6 +319,7 @@ window.getToken = function() {
     var userInfo = localStorage.getItem("_USER");                            
     userInfo = JSON.parse(userInfo);    
     this.console.log(userInfo.token);    
+    $("#nickname").text(userInfo.nickname);
     if(userInfo.secret_key != undefined){
         $("#secret_text").text(userInfo.secret_key);
         $("#secret_key_span").show();
