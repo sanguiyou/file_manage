@@ -322,6 +322,8 @@ window.getToken = function() {
     $("#nickname").text(userInfo.nickname);
     $("#update_pwd_layer_nick_name").text(userInfo.nickname);
     $("#update_pwd_layer_phone").text(userInfo.phone);
+    $("#left_layer_department_name").text(userInfo.department_name);
+    $("#left_layer_position_name").text(userInfo.position_name);
     if(userInfo.secret_key != undefined){
         $("#secret_text").text(userInfo.secret_key);
         $("#secret_key_span").show();
