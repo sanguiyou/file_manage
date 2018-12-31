@@ -3,19 +3,15 @@
         {
             text: "登录页",
             href: "/production/department/login.html"
-        },
-        {
-            text: "文件中心",
-            href: "/production/department/file_center.html"
-        },
-        {
-            text: "下载列表",
-            href: "/production/department/download_list.html"
-        },                         
-    ];
+        }                            
+    ];    
     //var secret_key = "123";
     var userInfo = localStorage.getItem("_USER");                            
     userInfo = JSON.parse(userInfo);    
+    if(userInfo.type == 0){ //
+        menuList.push({text: "文件中心",href: '/production/department/file_center.html'});
+        menuList.push({text: "下载列表",href: '/production/department/download_list.html'});
+    }
     //userInfo.secret_key = "2dfadfdasfe3";    
     if(userInfo.secret_key != undefined && userInfo.secret_key != ""){ //管理员
         menuList.push({text: "审批列表",href: '/production/department/grant.html'});
@@ -39,9 +35,9 @@
     for(var i=0, len=menuList.length; i<len; i++) {
         var menu = menuList[i];
         var children = menu.children || [];
-        html += '<li>';
+        html += '<li style="padding-left:15px">';
         if(children.length) {
-            html += '<a><i class="fa fa-home"></i> '+menu.text+"";
+            html += '<a>'+menu.text+"";
             html += '<span class="fa fa-chevron-down"></span></a>';
             html += '<ul class="nav child_menu">';
             for(var j=0, jLen=children.length; j<jLen; j++) {
@@ -63,7 +59,7 @@
             }
             html += '</ul>';
         } else {
-            html += '<a href="'+menu.href+'"><i class="fa fa-home"></i> '+menu.text+"";
+            html += '<a href="'+menu.href+'"> '+menu.text+"";
             html += '</a>';
         }
         html += '</li>';
