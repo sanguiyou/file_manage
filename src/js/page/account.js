@@ -83,7 +83,8 @@ var vue_instance = new Vue({
         },        
         load_edit_data(){ //拉取修改页的数据            
             jquery_ajax(ACTION_URL.user_detail,"post",this.form_data.id,false,(json_result)=>{
-                this.form_data = json_result.data; //赋值                               
+                this.form_data = json_result.data; //赋值    
+                this.$set(this.form_data,"password","");                           
             });                    
         }
         
@@ -111,7 +112,7 @@ var vue_instance = new Vue({
         $('#myModal').on('show.bs.modal',(e)=> {                        
             var target = e.relatedTarget;
             this.form_data.id = target.getAttribute("data-id");  
-            if(this.form_data.id > 0){
+            if(this.form_data.id > 0){                                
                 this.load_edit_data();       
                 this.title = "修改账户";
             }else{

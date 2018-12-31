@@ -107,7 +107,7 @@
                                 <td v-html="list_value.nickname"></td>
                                 <td v-html="list_value.id"></td>                              
                                 <td v-if="list_value.status==0">
-                                    <button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#auth_confirm">通过</button>                                                                   
+                                    <button class="btn btn-warning" :data-id="key" data-toggle="modal" data-target="#auth_confirm">通过</button>                                                                   
                                 </td>
                                 <td v-if="list_value.status==1">
                                     已通过
@@ -138,7 +138,7 @@
                                                     <p >文件名:</p>                                                    
                                                 </div>
                                                 <div class="col-md-10 col-sm-10 col-xs-10">
-                                                    <p >{{list[list_current_key].file_name}}</p>                                                    
+                                                    <p v-html="confirm_file_name"></p>                                                    
                                                 </div>
                                             </div>   
                                             <br> 

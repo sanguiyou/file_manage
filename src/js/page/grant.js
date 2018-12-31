@@ -6,7 +6,8 @@ var vue_instance = new Vue({
         totalPages: 0,
         position_list:[],    
         form_data:{},   
-        list_current_key:0, 
+        list_current_key:0,
+        confirm_file_name:"", 
         title:"",
         jquery_validate_obj:{},
         order_by:true,
@@ -70,8 +71,7 @@ var vue_instance = new Vue({
             if(!$("#form_lable").valid()){
                 alert("标‘*’字段必须填写");
                 return; 
-            }                                
-            this.form_data.auth_id = 48;    
+            }                                            
             jquery_ajax(ACTION_URL.file_auth_auth,"post",this.form_data,true,(json_result)=>{                
                 console.log(json_result);
                 alert("操作成功");      
@@ -101,9 +101,11 @@ var vue_instance = new Vue({
     mounted() {              
         $('#auth_confirm').on('show.bs.modal',(e)=> {                                    
             var target = e.relatedTarget;
-            this.list_current_key = target.getAttribute("data-id");          
-            alert(this.list[list_current_key].id);                  
-            this.$set(this.form_data,"auth_id",this.list[list_current_key].id);                
+            var key = target.getAttribute("data-id");   
+            if(key > 0 ){
+                this.confirm_file_name =  this.list[key].file_name;
+                this.$set(this.form_data,"auth_id",this.list[key].id);                
+            }                                    
         });         
                                               
         //$("#paste_btn").click(()=>{  
