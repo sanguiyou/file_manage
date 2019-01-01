@@ -105,7 +105,7 @@
                                 <td>{{list_value.end_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>
                                 <td class="left_time" :data-time="list_value.time"></td>   
                                 <td v-html="list_value.nickname"></td>
-                                <td v-html="list_value.id"></td>                              
+                                <td v-html="list_value.department_name+'/'+list_value.position_name"></td>                              
                                 <td v-if="list_value.status==0">
                                     <button class="btn btn-warning" :data-id="key" data-toggle="modal" data-target="#auth_confirm">通过</button>                                                                   
                                 </td>
