@@ -70,22 +70,16 @@ var vue_instance = new Vue({
         submit_form:function () {                                    
             this.form_data.location = $("#location").val();  
             this.form_data.name = $("#file_name").val();
-            this.form_data.size = $("#file_size").val();                  
+            this.form_data.size = $("#file_size").val();         
+            if(this.form_data.location == ""){
+                alert("文件不能为空！");
+                return;
+            }         
             jquery_ajax(ACTION_URL.file_upload_submit,"post",this.form_data,true,(json_result)=>{
                 alert("成功");
                 location.href=location.href;
                 //this.form_data = json_result.data; //赋值                               
-            });
-            //document.getElementById('form_lable').submit();                               
-            // jquery_ajax(ACTION_URL.positions_modify,"post",this.form_data,true,(json_result)=>{                
-            //     console.log(json_result);
-            //     alert("操作成功");
-            //     if(this.form_data.id > 0){
-            //         location.href="/production/department/level.html?current_page="+this.search_param.page;
-            //     }else{
-            //         location.href="/production/department/level.html";
-            //     }
-            // });                    
+            });                              
         },        
         load_edit_data(){ //拉取修改页的数据            
             jquery_ajax(ACTION_URL.files_detail,"post",this.form_data.id,false,(json_result)=>{

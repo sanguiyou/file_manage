@@ -154,7 +154,7 @@
                                             <div style="margin-top:10px;" class="row">
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <p >* 密码</p>
-                                                    <input type="text" name="name" v-model="form_data.password"/>
+                                                    <input type="text" name="name" v-model="form_data.password" :disabled="form_data.id>0?false:true"/>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <p >性别</p>
