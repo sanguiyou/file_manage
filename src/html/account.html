@@ -93,8 +93,7 @@
                             <tr>
                                 <th @click="order_array('id')">ID<i :class="'fa fa-chevron-'+(order_by==true?'up':'down')"></i></th>
                                 <th @click="order_array('nickname')">账户名</th>
-                                <th>登录名/手机号</th>
-                                <th>密码</th>                                
+                                <th>登录名/手机号</th>                                                         
                                 <th>性别</th> 
                                 <th>公司</th>
                                 <th>部门</th>
@@ -109,15 +108,14 @@
                             <tr v-for="list_value in list">
                                 <td v-html="list_value.id"></td>
                                 <td v-html="list_value.nickname"></td>   
-                                <td v-html="list_value.phone"></td>
-                                <td v-html="list_value.id"></td> 
-                                <td v-html="list_value.name"></td>
+                                <td v-html="list_value.phone"></td>                                
+                                <td v-html="list_value.sex == 1?'男':'女'"></td>
                                 <td v-html="list_value.company"></td>   
-                                <td v-html="list_value.departmentName"></td>
-                                <td v-html="list_value.position_id"></td> 
-                                <td v-html="list_value.id"></td>
-                                <td v-html="list_value.id"></td>   
-                                <td v-html="list_value.id"></td>                                                             
+                                <td v-html="list_value.department_name"></td>
+                                <td v-html="list_value.position_name"></td> 
+                                <td v-html="list_value.wechat"></td>
+                                <td v-html="list_value.email"></td>   
+                                <td v-html="list_value.note"></td>                                                             
                                 <td>
                                     <button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#myModal">修改</button>
                                     <button class="btn btn-danger" @click="del_record(list_value.id)">删除</button>                                    
@@ -150,7 +148,7 @@
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <p >* 手机号(登录名)</p>
-                                                    <input type="text" name="name" v-model="form_data.phone"/>
+                                                    <input type="text" name="name" v-model="form_data.phone" :disabled="form_data.id>0?true:false"/>
                                                 </div>
                                             </div>   
                                             <div style="margin-top:10px;" class="row">
