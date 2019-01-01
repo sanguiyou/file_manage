@@ -122,7 +122,7 @@
                             </thead>
                             <tbody>
                             <tr v-for="(list_value,key) in list">
-                                <td><a :href="'/production/department/file_category.html?dir_id='+list_value.id" v-html="list_value.name"></a></td>
+                                <td><img src="/production/images/wenjianjia.png"> <a :href="'/production/department/file_category.html?dir_id='+list_value.id" v-html="list_value.name"></a></td>
                                 <td>{{list_value.update_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>                                
                                 <td>
                                     <button class="btn btn-warning" :data-id="key" data-toggle="modal" data-target="#rename_folder">修改</button>

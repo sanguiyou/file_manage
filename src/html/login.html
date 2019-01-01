@@ -63,11 +63,13 @@
                                 <i class="fa fa-lock fa-lg"></i>
                                 <input class="form-control required" type="password" placeholder="请输入密码" id="password" name="password" maxlength="8"/>	                            
                         </div>
+                        <!--
                         <div class="form-group">
                             <label class="checkbox pull-left">
                                 <input type="checkbox" name="rememberMe" id="rememberMe" value="0"/><span style="position: relative;top:10px;left: 4px">记住我</span>
                             </label>                            
                         </div>
+                        -->
                         <div class="form-group col-md-offset-9">
                             <button  class="btn btn-success pull-right" id="login_btn">登录</button>
                         </div>
@@ -137,7 +139,11 @@
                     if(json.result == "00000000"){                                
                         localStorage.setItem("_USER",JSON.stringify(json.data));                           
                         alert("login successfully");
-                        window.location.href='/production/department/file_center.html';
+                        if(json.data.type==1){
+                            window.location.href='/production/department/level.html';
+                        }else{
+                            window.location.href='/production/department/file_center.html';
+                        }                        
                     } else{
                         alert("用户名或密码错误");
                         return;

@@ -95,8 +95,8 @@
                             <tbody>
                             <tr v-for="(list_value,key) in list">
                                 <td>
-                                    <span v-if="list_value.type==1">[文件]</span>
-                                    <span v-if="list_value.type==0">[目录]</span>
+                                    <img src="/production/images/wenjian.png" v-if="list_value.type==1">
+                                    <img src="/production/images/wenjianjia.png" v-if="list_value.type==0">                                    
                                     <a :href="'/production/department/file_center.html?dir_id='+list_value.id" v-html="list_value.name"></a>
                                 </td>
                                 <td v-html="list_value.size"></td>   
