@@ -2,7 +2,7 @@ var vue_instance = new Vue({
     el: '#app',
     data: {
         list: [],
-        search_param:{page:1,"rows":per_page_cnt,"category_id":""},        
+        search_param:{page:1,"rows":per_page_cnt,"dir_id":0},        
         totalPages: 0,
         position_list:[],    
         form_data:{},    
@@ -12,10 +12,13 @@ var vue_instance = new Vue({
         grant_user_list_info:[],
         file_id:0,
         download_url:ACTION_URL.file_download,
+        note:"",
+        file_name:"",
     },
     methods: {
         list_callback: function (ajax_json) {              
             this.list = ajax_json.data.records;
+            this.note = ajax_json.data.note;
             this.totalPages = ajax_json.data.pages;      
                         
             $('#pageLimit1').bootstrapPaginator({
@@ -86,7 +89,7 @@ var vue_instance = new Vue({
             jquery_ajax(ACTION_URL.file_auth_add,"post",this.form_data,true,(json_result)=>{                
                 console.log(json_result);
                 alert("操作成功");                
-                //location.href="/production/department/file_center.html?current_page="+this.search_param.page;
+                location.href="/production/department/file_center.html?current_page="+this.search_param.page;
                 
             });                    
         },        
@@ -97,7 +100,8 @@ var vue_instance = new Vue({
         },
         apply_download_file(){                        
             jquery_ajax_obj({"url":ACTION_URL.file_auth_add,"post_data":this.file_id,"callback_func":(json_result)=>{
-                
+                alert("申请成功");
+                location.href = location.href;
             }});                
         }
         
@@ -114,10 +118,11 @@ var vue_instance = new Vue({
         this.load_list();            
     },
     mounted() {              
-        $('#myModal').on('show.bs.modal',(e)=> {                        
+        $('#apply_submit').on('show.bs.modal',(e)=> {                        
             var target = e.relatedTarget;
             var key = target.getAttribute("data-id");     
             this.file_id = this.list[key].id;
+            this.file_name = this.list[key].name;
             jquery_ajax_obj({"url":ACTION_URL.file_auth_info,"post_data":this.list[key].id,"callback_func":(json_result)=>{
                 this.grant_user_list_info = json_result.data;
             }});               

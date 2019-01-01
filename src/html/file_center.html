@@ -60,7 +60,7 @@
         <div class="right_col" role="main" id="app">
             <ul class="nav navbar-nav navbar-left page_title">
                 <li class="page_name">
-                    文件中心
+                    文件中心[{{note}}]
                 </li>                             
             </ul>
             <div class="clearfix"></div>
@@ -103,7 +103,7 @@
                                 <td v-html="">{{list_value.update_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>
                                 <td v-html="list_value.fileLevelName"></td>                              
                                 <td v-if="list_value.type == 1 && (list_value.auth_id1 != undefined ||  list_value.auth_id12 != undefined)">                                    
-                                    <button class="btn btn-warning" :data-id="key" data-toggle="modal" data-target="#myModal">申请</button>                                      
+                                    <button class="btn btn-warning" :data-id="key" data-toggle="modal" data-target="#apply_submit">申请</button>                                      
                                 </td>
                                 <td v-if="list_value.type == 1 && list_value.auth_id1 == undefined &&  list_value.auth_id12 == undefined">                                    
                                    <button class="btn btn-warning" :data-id="list_value.id" @click="down_load_file(list_value.id)">下载</button>
@@ -121,7 +121,7 @@
                 </div>
             </div>
             <!-- 模态框（Modal） -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="apply_submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -131,7 +131,7 @@
                             <div class="modal-body">
                                 <div style="padding: 5px 30px;">    
                                     <div style="margin-top:10px;" class="row">  
-                                        <h3>文件名:<span>KBS系列1.PDF</span></h3>
+                                        <h3>文件名:<span v-html="file_name"></span></h3>
                                     </div>                               
                                     <div style="margin-top:10px;margin-left: 40px" class="row">                                              
                                         <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;font-size: 14px;color:blue;">                                            

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var per_page_cnt = 14;
+var per_page_cnt = 4;
 function parseURL(url) {
     //var url =  location.href;
     console.log(url);
@@ -316,9 +316,12 @@ if (typeof NProgress != 'undefined') {
 }
 
 window.getToken = function() {        
-    var userInfo = localStorage.getItem("_USER");                            
+    var userInfo = localStorage.getItem("_USER");  
     userInfo = JSON.parse(userInfo);    
-    this.console.log(userInfo.token);    
+    if(userInfo == undefined || userInfo.token == undefined || userInfo.token == ""){
+       window.location.href='/production/department/login.html';
+    }                          
+               
     $("#nickname").text(userInfo.nickname);
     $("#update_pwd_layer_nick_name").text(userInfo.nickname);
     $("#update_pwd_layer_phone").text(userInfo.phone);
@@ -349,7 +352,7 @@ function jquery_ajax(url,post_or_get,post_data,is_json,callback_func){
         dataType: "json",
         headers: {
             "Authorization": ""+getToken()
-        },        
+        },              
         contentType: "application/json",
         success: function(e) {                        
             if(e.result != 00000000){//判断登录过期                
@@ -361,8 +364,9 @@ function jquery_ajax(url,post_or_get,post_data,is_json,callback_func){
             callback_func(e);            
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {    
-            console.log(XMLHttpRequest.status);                    
-            //alert(XMLHttpRequest.readyState+url);
+            console.log(XMLHttpRequest.status);                            
+            alert("密码已过期，请重新登录");
+            location.href="/production/department/login.html";
             //alert(textStatus);
         },
         complete: function(XMLHttpRequest, textStatus) {
@@ -389,7 +393,7 @@ function jquery_ajax_obj(obj){
 
     var ajax_obj = {
         url: url,
-        type: post_or_get,
+        type: post_or_get,        
         dataType: "json",
         headers: {
             "Authorization": ""+getToken()
@@ -407,8 +411,8 @@ function jquery_ajax_obj(obj){
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {    
             console.log(XMLHttpRequest.status);                    
-            //alert(XMLHttpRequest.readyState+url);
-            //alert(textStatus);
+            alert("密码已过期，请重新登录");
+            location.href="/production/department/login.html";
         },
         complete: function(XMLHttpRequest, textStatus) {
             this; // 调用本次AJAX请求时传递的options参数

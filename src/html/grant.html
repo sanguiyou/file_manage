@@ -102,8 +102,8 @@
                                 <td v-html="list_value.file_name"></td>                                   
                                 <td v-html="list_value.id"></td>  
                                 <td>{{list_value.request_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>
-                                <td v-html="list_value.time+'秒'"></td>
-                                <td id="left_time">400</td>   
+                                <td>{{list_value.end_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>
+                                <td class="left_time" :data-time="list_value.time"></td>   
                                 <td v-html="list_value.nickname"></td>
                                 <td v-html="list_value.id"></td>                              
                                 <td v-if="list_value.status==0">

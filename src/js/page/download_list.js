@@ -104,13 +104,31 @@ var vue_instance = new Vue({
             //this.form_data.id = target.getAttribute("data-id");                        
         });
         setInterval(function(){
-           // $(".left_time").text(parseInt($(".left_time").text())-1);            
-            // var minites = (time%3600/60).toFixed(0);
-            // var second = (minites%60).toFixed(0); 
-            // var time_str = parseInt($("#left_time").text())/3600+":"+minites+":"+second;
-            // $("#left_time").text(time_str);
-            // time = time-1;
-        },1000);    
+            $(".left_time").each(function(){                   
+                if(parseInt($(this).data('time')) > 0){
+                    $(this).data('time',parseInt($(this).data('time'))-1);
+
+                    var hour = Math.floor(parseInt($(this).data('time'))/3600);                
+                    var show_hour = hour;
+                    if(show_hour < 10){
+                        show_hour = "0"+show_hour;
+                    }
+                    var minutes = Math.floor((parseInt($(this).data('time'))%3600)/60);
+                    var show_minutes = minutes;
+                    if(minutes < 10){
+                        show_minutes = "0"+minutes;
+                    }   
+                    var seconds = Math.floor((parseInt($(this).data('time'))%3600)%60);
+                    var show_seconds = seconds;
+                    if(seconds < 10){
+                        show_seconds = "0"+seconds;
+                    }     
+                    $(this).text(show_hour+":"+show_minutes+":"+show_seconds);
+                }else{
+                    $(this).text("00:00:00");
+                }                           
+            });                            
+        },1000);      
         this.jquery_validate_obj = $("#form_lable").validate({
 			rules: {
                 name: "required",		                

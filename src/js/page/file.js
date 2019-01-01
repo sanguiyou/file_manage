@@ -11,6 +11,7 @@ var vue_instance = new Vue({
         order_by:true,
         left_list:[], 
         zNodes:[],
+        left_tree_obj:{},
     },
     methods: {
         list_callback: function (ajax_json) {              
@@ -60,7 +61,7 @@ var vue_instance = new Vue({
         }, 
         del_record(id){            
             if(confirm("确定要删除此记录吗？")){
-                jquery_ajax(ACTION_URL.positions_delete,"post",id,true,()=>{
+                jquery_ajax(ACTION_URL.files_delete,"post",id,true,()=>{
                     alert("操作成功");
                     location.href = location.href;
                 }); 
@@ -87,8 +88,13 @@ var vue_instance = new Vue({
             // });                    
         },        
         load_edit_data(){ //拉取修改页的数据            
-            jquery_ajax(ACTION_URL.positions_getPositions,"post",this.form_data.id,false,(json_result)=>{
-                this.form_data = json_result.data; //赋值                               
+            jquery_ajax(ACTION_URL.files_detail,"post",this.form_data.id,false,(json_result)=>{
+                this.form_data = json_result.data; //赋值      
+                $("#location").val(json_result.data.location);  
+                $("#file_name").val(json_result.data.name);
+                $("#file_size").val(json_result.data.size); 
+                this.form_data.parent_id = json_result.data.parent_id;                        
+                this.form_data.file_level_id = json_result.data.file_level_id;                
             });                    
         },
         left_tree_on_check(e, treeId, treeNode){            
@@ -138,9 +144,9 @@ var vue_instance = new Vue({
         }); 
 
         var setting = {
-            check: {
-                enable: true
-            },
+            // check: {
+            //     enable: true
+            // },
             data: {
                 simpleData: {
                     enable: true
@@ -156,14 +162,16 @@ var vue_instance = new Vue({
             { id:221, pId:22, name:"李松"},
             { id:222, pId:22, name:"胡江"},
             { id:23, pId:2, name:"李文东"}
-        ];                                               
+        ];      
+                                                 
         //拉目录列表
         jquery_ajax_obj({"url":ACTION_URL.folder_structures,"post_data":undefined,"is_json_param":false,
             "callback_func":(e)=>{    
                 console.log(e.data);                
-                this.zNodes = e.data;                                                 
-                var left_tree_obj = $.fn.zTree.init($("#left_tree"), setting, this.zNodes);
-                left_tree_obj.setting.callback.onCheck = this.left_tree_on_check;                        
+                this.zNodes = e.data;   
+                this.left_tree_obj = $.fn.zTree.init($("#left_tree"), setting, this.zNodes);                                                              
+                //left_tree_obj.setting.callback.onCheck = this.left_tree_on_check;  
+                this.left_tree_obj.setting.callback.onClick = this.left_tree_on_check;                                      
             },
         });     
         

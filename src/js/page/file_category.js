@@ -64,7 +64,7 @@ var vue_instance = new Vue({
             if(confirm("确定要删除此记录吗？")){
                 jquery_ajax(ACTION_URL.files_delete,"post",id,true,()=>{
                     alert("操作成功");
-                    //location.href = location.href;
+                    location.href = location.href;
                 }); 
             }                 
         },
@@ -147,9 +147,9 @@ var vue_instance = new Vue({
 			}
         }); 
         var setting = {
-            check: {
-                enable: true
-            },
+            // check: {
+            //     enable: true
+            // },
             data: {
                 simpleData: {
                     enable: true
@@ -175,7 +175,7 @@ var vue_instance = new Vue({
                 console.log(e.data);                
                 this.zNodes = e.data;                                                 
                 var left_tree_obj = $.fn.zTree.init($("#left_tree"), setting, this.zNodes);
-                left_tree_obj.setting.callback.onCheck = this.left_tree_on_check;                        
+                left_tree_obj.setting.callback.onClick = this.left_tree_on_check; 
             },
         });   
         $('#rename_folder').on('show.bs.modal',(e)=> {                                  

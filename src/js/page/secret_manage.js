@@ -54,12 +54,12 @@ var vue_instance = new Vue({
         },
         user_update_secket_key:function(user_id){
             jquery_ajax(ACTION_URL.user_update_secket_key,"post",user_id,true,(e)=>{
-                var userInfo = localStorage.getItem("_USER");                            
-                userInfo = JSON.parse(userInfo);    
-                userInfo.token = e.data.secret; 
-                localStorage.setItem("_USER",JSON.stringify(userInfo));  
+                // var userInfo = localStorage.getItem("_USER");                            
+                // userInfo = JSON.parse(userInfo);    
+                // userInfo.secret = e.data.secret; 
+                // localStorage.setItem("_USER",JSON.stringify(userInfo));  
                 alert("更换成功");
-                //location.href = location.href;
+                location.href = location.href;
             }); 
         } 
     },
