@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var per_page_cnt = 4;
+var per_page_cnt = 14;
 function parseURL(url) {
     //var url =  location.href;
     console.log(url);
