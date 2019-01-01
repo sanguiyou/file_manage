@@ -1,9 +1,9 @@
 (function() {
     var menuList = [
-        {
-            text: "登录页",
-            href: "/production/department/login.html"
-        }                            
+        // {
+        //     text: "登录页",
+        //     href: "/production/department/login.html"
+        // }                            
     ];    
     //var secret_key = "123";
     var userInfo = localStorage.getItem("_USER");                            
@@ -87,5 +87,11 @@
             alert("密码更新成功，请重新登录！");                                       
         });           
     });
-    
+    $("#logout_btn").click(function(){
+        var userInfo = localStorage.getItem("_USER");                            
+        userInfo = JSON.parse(userInfo);    
+        userInfo.token = ""; 
+        localStorage.setItem("_USER",JSON.stringify(userInfo));
+        window.location.href='/production/department/login.html';
+    });
 })();
