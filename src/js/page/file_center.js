@@ -13,12 +13,17 @@ var vue_instance = new Vue({
         file_id:0,
         download_url:ACTION_URL.file_download,
         note:"",
+        pre_parent_id:0,
         file_name:"",
     },
     methods: {
+        return_pre_category:function(){
+            location.href = "/production/department/file_center.html?dir_id="+this.pre_parent_id;
+        },
         list_callback: function (ajax_json) {              
             this.list = ajax_json.data.records;
             this.note = ajax_json.data.note;
+            this.pre_parent_id = ajax_json.data.pre_parent_id;
             this.totalPages = ajax_json.data.pages;      
                         
             $('#pageLimit1').bootstrapPaginator({

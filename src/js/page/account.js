@@ -116,7 +116,7 @@ var vue_instance = new Vue({
                 this.load_edit_data();       
                 this.title = "修改账户";
             }else{
-                this.form_data = {"id":null};
+                this.form_data = {"id":null,"password":"tysen2019kld"};
                 this.title = "新增账户";
             }               
         });

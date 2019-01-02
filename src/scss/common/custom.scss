@@ -3,6 +3,27 @@ $body-left-col-width: 250px;
 .left_col {
   background: $main-color;
 }
+.yes_confirm_btn{
+  border: 1px solid green;
+  background: white;
+  color:green;
+  border-radius: 4px;
+  font-weight: bold
+}
+.no_confirm_btn{
+  border: 1px solid red;
+  background: white;
+  color:red;
+  border-radius: 4px;
+  font-weight: bold
+}
+.expired_confirm_btn{
+  border: 1px solid gray;
+  background: white;
+  color:gray;
+  border-radius: 4px;
+  font-weight: bold
+}
 .nav-sm .container.body .col-md-3.left_col {
   min-height: 100%;
   width: 70px;

@@ -2,7 +2,7 @@ var vue_instance = new Vue({
     el: '#app',
     data: {
         list: [],
-        search_param:{page:1,"rows":per_page_cnt},        
+        search_param:{page:1,"rows":per_page_cnt,"type":0},        
         totalPages: 0,
         position_list:[],    
         form_data:{},    
@@ -36,7 +36,7 @@ var vue_instance = new Vue({
                 onPageClicked: (event, originalEvent, type, page)=> {
                     this.search_param.page = page;
                     console.log("clicked page", page);
-                    jquery_ajax(ACTION_URL.file_dowloads_list,"post",this.search_param,true,this.list_callback);  
+                    jquery_ajax(ACTION_URL.file_auths_list,"post",this.search_param,true,this.list_callback);  
                 }
             }); 
                               
@@ -56,7 +56,7 @@ var vue_instance = new Vue({
         },
         load_list:function(){                 
             console.log(this.search_param);            
-            jquery_ajax(ACTION_URL.file_dowloads_list,"post",this.search_param,true,this.list_callback);      
+            jquery_ajax(ACTION_URL.file_auths_list,"post",this.search_param,true,this.list_callback);      
         }, 
         del_record(id){            
             if(confirm("确定要删除此记录吗？")){

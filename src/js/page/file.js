@@ -2,7 +2,7 @@ var vue_instance = new Vue({
     el: '#app',
     data: {
         list: [],
-        search_param:{page:1,"rows":per_page_cnt,"type":"1"},        
+        search_param:{page:1,"rows":per_page_cnt,"type":"2","dir_id":0},        
         totalPages: 0,
         level_list:[],    
         form_data:{"name":"",size:0},    
@@ -11,12 +11,19 @@ var vue_instance = new Vue({
         order_by:true,
         left_list:[], 
         zNodes:[],
+        pre_parent_id:0,
         left_tree_obj:{},
+        note:"",
     },
     methods: {
+        return_pre_category:function(){
+            location.href = "/production/department/file_center.html?dir_id="+this.pre_parent_id;
+        },
         list_callback: function (ajax_json) {              
             this.list = ajax_json.data.records;
-            this.totalPages = ajax_json.data.pages;      
+            this.totalPages = ajax_json.data.pages; 
+            this.pre_parent_id = ajax_json.data.pre_parent_id;     
+            this.note = ajax_json.data.note;
                         
             $('#pageLimit1').bootstrapPaginator({
                 currentPage: this.search_param.page,
@@ -56,9 +63,13 @@ var vue_instance = new Vue({
             });            
         },
         load_list:function(){                 
-            console.log(this.search_param);            
+            this.search_param.type = 2;           
             jquery_ajax(ACTION_URL.files_list,"post",this.search_param,true,this.list_callback);      
         }, 
+        load_list_search:function(){                             
+            this.search_param.type = 1;           
+            jquery_ajax(ACTION_URL.files_list,"post",this.search_param,true,this.list_callback);      
+        },
         del_record(id){            
             if(confirm("确定要删除此记录吗？")){
                 jquery_ajax(ACTION_URL.files_delete,"post",id,true,()=>{
@@ -107,7 +118,10 @@ var vue_instance = new Vue({
         console.log(page_param["current_page"]);
         if(page_param["current_page"] != undefined){
             this.search_param.page = page_param["current_page"];
-        }        
+        }  
+        if(page_param["dir_id"] != undefined){
+            this.search_param.dir_id = page_param["dir_id"];
+        }         
         jquery_ajax_obj({"url":ACTION_URL.file_levels_list,"post_data":{page:1,"rows":3000},
             "callback_func":(e)=>{
                 this.level_list = e.data.records;            
@@ -124,7 +138,7 @@ var vue_instance = new Vue({
                 this.load_edit_data();       
                 this.title = "修改文件";
             }else{
-                this.form_data = {"id":null};
+                this.form_data = {"id":null,"file_level_id":""};
                 this.title = "新增文件";
             }               
         });

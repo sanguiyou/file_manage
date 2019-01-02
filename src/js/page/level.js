@@ -65,11 +65,23 @@ var vue_instance = new Vue({
             }                 
         },
         submit_form:function () {                        
-            console.log(this.form_data);   
-            if(!$("#form_lable").valid()){
-                alert("标‘*’字段必须填写");
-                return; 
-            }                                    
+            console.log(this.form_data);               
+            if(this.form_data.name == undefined){
+                alert("级别不能为空");
+                return;
+            }              
+            if(this.form_data.auth_id1 == undefined){
+                alert("授权人1必须选择");
+                return;
+            }
+            if(this.form_data.auth_id2 == undefined){
+                alert("授权人2必须选择");
+                return;
+            }
+            if(this.form_data.auth_id1 == this.form_data.auth_id2){
+                alert("授权人1和授权人2不能是同一个人");
+                return;
+            }                
             jquery_ajax(ACTION_URL.file_levels_modify,"post",this.form_data,true,(json_result)=>{                
                 console.log(json_result);
                 alert("操作成功");

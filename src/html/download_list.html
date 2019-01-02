@@ -91,16 +91,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="list_value in list">
+                            <tr v-for="list_value in list" :style="list_value.status=='2'?'color:gray':''">
                                 <td v-html="list_value.id"></td>   
-                                <td v-html="list_value.file_name"></td>
+                                <td>
+                                    <img src="/production/images/wenjian.png">
+                                    <span v-html="list_value.file_name"></span>
+                                </td>
                                 <td v-html="list_value.size"></td>   
-                                <td>{{ list_value.request_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>
-                                <td >{{ list_value.end_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>                              
+                                <td>{{ list_value.request_at | format_date('YYYY-MM-DD HH:mm')}}</td>
+                                <td >{{ list_value.end_at | format_date('HH:mm')}}</td>                              
                                 <td class="left_time" :data-time="list_value.time" style="color:green;font-weight:bold"></td>  
                                 <td>
-                                    {{list_value.auth_name1}} <button class="btn btn-danger btn-xs" v-if="list_value.auth_status1==0 && list_value.auth_name1 !=undefined">未确认</button><button class="btn btn-success btn-xs" v-if="list_value.auth_status1==1 && list_value.auth_name1 !=undefined">已确认</button>   
-                                    {{list_value.auth_name2}}<button class="btn btn-danger btn-xs" v-if="list_value.auth_status2==0 && list_value.auth_name2 !=undefined">未确认</button><button class="btn btn-success btn-xs" v-if="list_value.auth_status2==1 && list_value.auth_name2 !=undefined">已确认</button>   
+                                    {{list_value.auth_name1}}&nbsp;&nbsp;<span :class="list_value.status=='2'?'expired_confirm_btn':'no_confirm_btn'" v-if="list_value.auth_status1==0 && list_value.auth_name1 !=undefined">未确认</span><span :class="list_value.status=='2'?'expired_confirm_btn':'yes_confirm_btn'" v-if="list_value.auth_status1==1 && list_value.auth_name1 !=undefined">已确认</span>   
+                                    &nbsp;&nbsp;{{list_value.auth_name2}}&nbsp;&nbsp;<span :class="list_value.status=='2'?'expired_confirm_btn':'no_confirm_btn'" v-if="list_value.auth_status2==0 && list_value.auth_name2 !=undefined">未确认</span><span :class="list_value.status=='2'?'expired_confirm_btn':'yes_confirm_btn'"  v-if="list_value.auth_status2==1 && list_value.auth_name2 !=undefined">已确认</span>   
                                 </td>  
                                 <td v-if="list_value.status=='1'">
                                     <a :href="download_url+list_value.file_id+'/'+list_value.file_request_id+'?Authorization='+token"><button class="btn btn-warning" :data-id="list_value.id">下载</button></a>

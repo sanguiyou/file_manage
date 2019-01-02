@@ -19,9 +19,9 @@ function parseURL(url) {
     return parseResult;
 }
 
-var remote_host = "http://39.106.160.14:8080";
+//var remote_host = "http://39.106.160.14:8080";
 //var remote_host = "http://192.168.1.102:8080";
-//var remote_host = "http://192.168.2.179:8080";
+var remote_host = "http://192.168.2.179:8080";
 var ACTION_URL ={
     "city_list":remote_host+"/cities/getlistDic",   //市列表
     "province_list":remote_host+"/provinces/getlistDic",  //省列表
