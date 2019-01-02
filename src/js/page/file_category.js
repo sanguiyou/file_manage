@@ -12,11 +12,16 @@ var vue_instance = new Vue({
         left_list:[], 
         zNodes:[],
         current_path:"",
+        pre_parent_id:0,
     },
     methods: {
+        return_pre_category:function(){
+            location.href = "/production/department/file_category.html?dir_id="+this.pre_parent_id;
+        },
         list_callback: function (ajax_json) {              
             this.list = ajax_json.data.records;
             this.current_path = ajax_json.data.note;
+            this.pre_parent_id = ajax_json.data.pre_parent_id;
             this.totalPages = ajax_json.data.pages;      
                         
             $('#pageLimit1').bootstrapPaginator({

@@ -84,8 +84,8 @@
         <!-- page content -->
         <div class="right_col" role="main" id="app">
             <ul class="nav navbar-nav navbar-left page_title">
-                <li class="page_name">
-                    目录管理[<span v-html="current_path"></span>]
+                <li class="page_name">                    
+                    <span style="display:inline-block" @click="return_pre_category()">返回上一级</span>|目录管理{{current_path}}
                 </li>
                 <li >
                     <ul class="breadcrumb border">                        
@@ -124,9 +124,9 @@
                             <tr v-for="(list_value,key) in list">
                                 <td><img src="/production/images/wenjianjia.png"> <a :href="'/production/department/file_category.html?dir_id='+list_value.id" v-html="list_value.name"></a></td>
                                 <td>{{list_value.update_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>                                
-                                <td>
-                                    <button class="btn btn-warning" :data-id="key" data-toggle="modal" data-target="#rename_folder">修改</button>
-                                    <button class="btn btn-danger" @click="del_record(list_value.id)">删除</button>                                    
+                                <td>                            
+                                    <span class="blue_color" :data-id="key" data-toggle="modal" data-target="#rename_folder">修改</span>
+                                    &nbsp;&nbsp;<span class="blue_color" @click="del_record(list_value.id)">删除</span>                                     
                                 </td>
                             </tr>                            
                             </tbody>

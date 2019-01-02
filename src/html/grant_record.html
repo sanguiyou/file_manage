@@ -105,9 +105,9 @@
                                 <td v-html="list_value.user_id"></td>
                                 <td v-html="list_value.id"></td>   
                                 <td v-html="list_value.name"></td>
-                                <td>
-                                    {{list_value.auth_name1}} <button v-if="list_value.auth_status1==1" class="btn btn-danger btn-xs">未确认</button>  <button v-if="list_value.auth_status1==0" class="btn btn-success btn-xs">已确认</button>  
-                                    {{list_value.auth_name2}} <button v-if="list_value.auth_status2==1" class="btn btn-danger btn-xs">未确认</button> <button v-if="list_value.auth_status2==0" class="btn btn-success btn-xs">已确认</button>
+                                <td>                                    
+                                    {{list_value.auth_name1}}&nbsp;&nbsp;<span class="no_confirm_btn" v-if="list_value.auth_status1==0">未确认</span><span class="yes_confirm_btn" v-if="list_value.auth_status1==1">已确认</span>   
+                                    &nbsp;&nbsp;{{list_value.auth_name2}}&nbsp;&nbsp;<span class="no_confirm_btn" v-if="list_value.auth_status2==0">未确认</span><span class="yes_confirm_btn"  v-if="list_value.auth_status2==1">已确认</span>   
                                 </td>                            
                                 <td v-html="list_value.id"></td>
                             </tr>                            

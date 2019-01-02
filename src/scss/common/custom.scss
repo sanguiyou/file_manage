@@ -3,6 +3,24 @@ $body-left-col-width: 250px;
 .left_col {
   background: $main-color;
 }
+.blue_color{
+    color: #00aeef;
+    text-decoration: underline
+}
+.gray_color{
+  color:gray;  
+}
+.open_color{
+  color:#286090;
+  text-decoration: underline
+}
+.apply_color{
+  color:red;
+  text-decoration: underline
+}
+.red_no_underline{
+  color:red;
+}
 .yes_confirm_btn{
   border: 1px solid green;
   background: white;

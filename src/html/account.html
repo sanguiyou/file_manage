@@ -117,8 +117,8 @@
                                 <td v-html="list_value.email"></td>   
                                 <td v-html="list_value.note"></td>                                                             
                                 <td>
-                                    <button class="btn btn-warning" :data-id="list_value.id" data-toggle="modal" data-target="#myModal">修改</button>
-                                    <button class="btn btn-danger" @click="del_record(list_value.id)">删除</button>                                    
+                                    <span class="blue_color" :data-id="list_value.id" data-toggle="modal" data-target="#myModal">修改</span>
+                                    &nbsp;&nbsp;<span class="blue_color" @click="del_record(list_value.id)">删除</span>                                                                           
                                 </td>
                             </tr>                            
                             </tbody>
