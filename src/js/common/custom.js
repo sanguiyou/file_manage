@@ -20,7 +20,7 @@ function parseURL(url) {
 }
 
 var remote_host = "http://39.106.160.14:8080";
-var remote_host = "http://192.168.1.102:8080";
+//var remote_host = "http://192.168.1.102:8080";
 //var remote_host = "http://192.168.2.179:8080";
 var ACTION_URL ={
     "city_list":remote_host+"/cities/getlistDic",   //市列表

@@ -125,7 +125,7 @@ var vue_instance = new Vue({
                     }     
                     $(this).text(show_hour+":"+show_minutes+":"+show_seconds);
                 }else{
-                    $(this).text("00:00:00");
+                    $(this).text("0");
                 }                           
             });                            
         },1000);      

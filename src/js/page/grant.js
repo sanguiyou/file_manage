@@ -71,7 +71,11 @@ var vue_instance = new Vue({
             if(!$("#form_lable").valid()){
                 alert("标‘*’字段必须填写");
                 return; 
-            }                                            
+            }                
+            if(this.form_data.secret_key == undefined){
+                alert("请输入密钥");
+                return;
+            }                  
             jquery_ajax(ACTION_URL.file_auth_auth,"post",this.form_data,true,(json_result)=>{                
                 console.log(json_result);
                 alert("操作成功");      
@@ -130,7 +134,7 @@ var vue_instance = new Vue({
                     }     
                     $(this).text(show_hour+":"+show_minutes+":"+show_seconds);
                 }else{
-                    $(this).text("00:00:00");
+                    $(this).text("0");
                 }                           
             });                            
         },1000);                               

@@ -97,10 +97,10 @@
                                 <td v-html="list_value.size"></td>   
                                 <td>{{ list_value.request_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>
                                 <td >{{ list_value.end_at | format_date('YYYY-MM-DD HH:mm:ss')}}</td>                              
-                                <td class="left_time" :data-time="list_value.time"></td>  
+                                <td class="left_time" :data-time="list_value.time" style="color:green;font-weight:bold"></td>  
                                 <td>
-                                    {{list_value.auth_name1}} <button class="btn  btn-xs" v-if="list_value.auth_status1==0 && list_value.auth_name1 !=undefined">未确认</button><button class="btn btn-info btn-xs" v-if="list_value.auth_status1==1 && list_value.auth_name1 !=undefined">已确认</button>   
-                                    {{list_value.auth_name2}}<button class="btn  btn-xs" v-if="list_value.auth_status2==0 && list_value.auth_name2 !=undefined">未确认</button><button class="btn btn-info btn-xs" v-if="list_value.auth_status2==1 && list_value.auth_name2 !=undefined">已确认</button>   
+                                    {{list_value.auth_name1}} <button class="btn btn-danger btn-xs" v-if="list_value.auth_status1==0 && list_value.auth_name1 !=undefined">未确认</button><button class="btn btn-success btn-xs" v-if="list_value.auth_status1==1 && list_value.auth_name1 !=undefined">已确认</button>   
+                                    {{list_value.auth_name2}}<button class="btn btn-danger btn-xs" v-if="list_value.auth_status2==0 && list_value.auth_name2 !=undefined">未确认</button><button class="btn btn-success btn-xs" v-if="list_value.auth_status2==1 && list_value.auth_name2 !=undefined">已确认</button>   
                                 </td>  
                                 <td v-if="list_value.status=='1'">
                                     <a :href="download_url+list_value.file_id+'/'+list_value.file_request_id+'?Authorization='+token"><button class="btn btn-warning" :data-id="list_value.id">下载</button></a>
