@@ -35,12 +35,7 @@
 <div class="container body">
     <div class="main_container">
         <div class="col-md-3 left_col">
-            <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title">
-                        <span>TysenKLD</span></a>
-                </div>
-                <div class="clearfix"></div>
+            <div class="left_col scroll-view">                
                 <!-- menu profile quick info -->
                 @@include('./left_part.html')
                 <!-- /menu profile quick info -->
@@ -59,26 +54,13 @@
         <!-- page content -->
         <div class="right_col" role="main" id="app">
             <ul class="nav navbar-nav navbar-left page_title">
-                <li class="page_name">
+                <li class="right_nav_title">
                     <span style="display:inline-block" @click="return_pre_category()">返回上一级</span>|文件中心{{note}}
-                </li>                             
+                </li>                                                          
             </ul>
+            <input class="search_btn" type="text" placeholder="请输入文件名" v-model="search_param.name" @keyup="load_list_search()"/>
             <div class="clearfix"></div>
-            <div class="row special">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="search_content">
-                        <div class="col-md-3 col-sm-3 col-xs-3">
-                            <p >文件名</p>
-                            <input type="text" v-model="search_param.name"/>
-                        </div>                        
-                        <div class="col-md-3 col-sm-3 col-xs-3">
-                            <p>&nbsp;</p>
-                            <button type="button" id="searchBtn" class="btn btn-primary" @click="load_list_search()">搜索</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br/>
+            
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel tile">
@@ -130,36 +112,34 @@
             <div class="modal fade" id="apply_submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <div class="modal-header" style="border: 0px;font-size: 16px;color: #000;padding:34px 0px 20px 38px;">                                
                                 <h4 class="modal-title" id="myModalLabel">下载申请</h4>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body" style="padding:0px 0px 0px 70px">
                                 <div style="padding: 5px 30px;">    
-                                    <div style="margin-top:10px;" class="row">  
+                                    <div style="margin-top:10px;font-size:16px;color: #000;" class="row">  
                                         <h3>文件名:<span v-html="file_name"></span></h3>
                                     </div>                               
                                     <div style="margin-top:10px;margin-left: 40px" class="row">                                              
-                                        <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;font-size: 14px;color:blue;">                                            
+                                        <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;font-size: 14px;color:#f57900;">                                            
                                                 <template v-for="user_info_obj in grant_user_list_info">
                                                     <p><span v-html="user_info_obj.nickname"></span>， 微信：<span v-html="user_info_obj.wechat">32132121</span>，电话：<span v-html="user_info_obj.phone">1232131321</span>，</p>
                                                     <p>邮箱：<span v-html="user_info_obj.email">3444@qq.com</span> </p>                                                    
                                                 </template>                                            
                                         </div>                                                                               
                                     </div>    
-                                    <div style="margin-top:10px;" class="row"> 
+                                    <div style="margin-top:10px;font-size:14px;color:#000" class="row"> 
                                         <h3>说明:</h3>
                                         <p>1、重要文件，需授权后下载。</p>
                                         <p>2、点击确定申请后，请在1小时内通知授权人授权</p>
                                         <p>3、进入我的下载列表可查看授权和下载状态</p>
                                     </div>                                   
                                 </div>
-                                <br/>
-                                 
+                                <br/>                                 
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="button" class="btn btn-primary" @click="apply_download_file()">确定申请</button>
+                            <div class="modal-footer" style="text-align:center;border: 0px">                                
+                                <button type="button" class="btn btn-primary" style="background:#3174e1" @click="apply_download_file()">确定申请</button>
+                                <button type="button" class="btn btn-default" style="background:#c1cedc;color: white" data-dismiss="modal">取消返回</button>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->

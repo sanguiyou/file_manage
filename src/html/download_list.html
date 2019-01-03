@@ -30,12 +30,7 @@
 <div class="container body">
     <div class="main_container">
         <div class="col-md-3 left_col">
-            <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title">
-                        <span>TysenKLD</span></a>
-                </div>
-                <div class="clearfix"></div>
+            <div class="left_col scroll-view">                
                 <!-- menu profile quick info -->
                 @@include('./left_part.html')
                 <!-- /menu profile quick info -->
@@ -54,26 +49,12 @@
         <!-- page content -->
         <div class="right_col" role="main" id="app">
             <ul class="nav navbar-nav navbar-left page_title">
-                <li class="page_name">
+                <li class="right_nav_title">
                     下载列表
                 </li>                          
             </ul>
-            <div class="clearfix"></div>
-            <div class="row special">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="search_content">
-                        <div class="col-md-3 col-sm-3 col-xs-3">
-                            <p >文件名</p>
-                            <input type="text" v-model="search_param.name"/>
-                        </div>                        
-                        <div class="col-md-3 col-sm-3 col-xs-3">
-                            <p>&nbsp;</p>
-                            <button type="button" id="searchBtn" class="btn btn-primary" @click="load_list()">搜索</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br/>
+            <input class="search_btn" type="text" placeholder="请输入文件名" v-model="search_param.name" @keyup="load_list()"/>
+            <div class="clearfix"></div>            
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel tile">

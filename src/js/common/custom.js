@@ -19,9 +19,9 @@ function parseURL(url) {
     return parseResult;
 }
 
-//var remote_host = "http://39.106.160.14:8080";
+var remote_host = "http://39.106.160.14:8080";
 //var remote_host = "http://192.168.1.102:8080";
-var remote_host = "http://192.168.2.179:8080";
+//var remote_host = "http://192.168.2.179:8080";
 var ACTION_URL ={
     "city_list":remote_host+"/cities/getlistDic",   //市列表
     "province_list":remote_host+"/provinces/getlistDic",  //省列表
@@ -326,7 +326,10 @@ window.getToken = function() {
     $("#update_pwd_layer_nick_name").text(userInfo.nickname);
     $("#update_pwd_layer_phone").text(userInfo.phone);
     $("#left_layer_department_name").text(userInfo.department_name);
-    $("#left_layer_position_name").text(userInfo.position_name);
+    if(userInfo.position_name != undefined && userInfo.position_name !=""){
+        $("#left_layer_position_name").text("/"+userInfo.position_name);
+    }
+    
     if(userInfo.secret_key != undefined){
         $("#secret_text").text(userInfo.secret_key);
         $("#secret_key_span").show();

@@ -17,7 +17,7 @@ var vue_instance = new Vue({
     },
     methods: {
         return_pre_category:function(){
-            location.href = "/production/department/file_center.html?dir_id="+this.pre_parent_id;
+            location.href = "/production/department/file.html?dir_id="+this.pre_parent_id;
         },
         list_callback: function (ajax_json) {              
             this.list = ajax_json.data.records;

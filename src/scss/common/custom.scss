@@ -3,6 +3,19 @@ $body-left-col-width: 250px;
 .left_col {
   background: $main-color;
 }
+.right_nav_title{
+    font-size: 12px;
+    color:#859cb8;
+}
+.search_btn{
+  float: right;
+  margin: 20px;
+  width: 228px;
+  border-radius:25px;
+  height: 27px;
+  background: #d4dde7;
+  padding-left:20px 
+}
 .blue_color{
     color: #00aeef;
     text-decoration: underline
@@ -2359,7 +2372,7 @@ input.parsley-error, textarea.parsley-error, select.parsley-error {
 
 /* ***** buttons ********/
 .btn {
-  border-radius: 3px;
+  border-radius: 8px;
 }
 a.btn-success, a.btn-primary, a.btn-warning, a.btn-danger {
   color: #fff;
